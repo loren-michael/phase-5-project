@@ -10,7 +10,7 @@ class CreateItems < ActiveRecord::Migration[7.0]
       t.string :condition
       t.string :make
       t.string :model
-      t.price :price
+      t.monetize :price
 
       t.timestamps
     end

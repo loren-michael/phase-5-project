@@ -4,7 +4,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 ruby "2.7.4"
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
-gem "rails", "~> 7.0.4", ">= 7.0.4.3"
+gem 'rails', '~> 6.1.4', '>= 6.1.4.1'
 
 # Use postgresql as the database for Active Record
 gem "pg", "~> 1.1"
@@ -50,3 +50,5 @@ group :development do
 end
 
 gem 'active_model_serializers', '~> 0.10.12'
+
+gem 'money-rails', '~> 1.12'

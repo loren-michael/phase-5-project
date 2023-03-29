@@ -1,7 +1,7 @@
 class CreateItems < ActiveRecord::Migration[7.0]
   def change
     create_table :items do |t|
-      t.integer :user_id
+      t.belongs_to :user_id, index: true
       t.string :name
       t.string :image
       t.string :description

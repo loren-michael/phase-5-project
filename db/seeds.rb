@@ -42,7 +42,7 @@ i1 = Item.create(
   condition: "Used",
   make: "Shure",
   model: "SM58",
-  price_cents: 75.45,
+  price: 74.99
 )
 # i2 = Item.create(
 #   user_id: u1.id,

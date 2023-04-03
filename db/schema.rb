@@ -52,8 +52,7 @@ ActiveRecord::Schema.define(version: 2023_03_29_192957) do
     t.string "condition"
     t.string "make"
     t.string "model"
-    t.integer "price_cents", default: 0, null: false
-    t.string "price_currency", default: "USD", null: false
+    t.decimal "price", precision: 10, scale: 2, default: "0.0"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_items_on_user_id"

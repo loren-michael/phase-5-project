@@ -10,7 +10,7 @@ class CreateItems < ActiveRecord::Migration[6.1]
       t.string :condition
       t.string :make
       t.string :model
-      t.monetize :price
+      t.decimal :price, :precision => 10, :scale => 2, :default => 0.0
 
       t.timestamps
     end

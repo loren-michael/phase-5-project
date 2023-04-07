@@ -1,6 +1,6 @@
 import React from 'react';
 // import { useState, useEffect, useContext } from 'react';
-import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import { BrowserRouter, Switch, Route, Routes } from 'react-router-dom';
 import './App.css';
 import { useSelector } from 'react-redux';
 import NavBar from './components/NavBar'
@@ -14,9 +14,9 @@ function App() {
     <BrowserRouter>
       <div>
         <NavBar  />
-        <Switch> 
+        <Routes>
           <Route exact path="/" />
-        </Switch>
+        </Routes>
       </div>
     </BrowserRouter>
   );

@@ -1,11 +1,15 @@
-import logo from './logo.svg';
+import React from 'react';
 import './App.css';
+import { useSelector } from 'react-redux';
 
 function App() {
+
+  const items = useSelector(store => store.itemsReducer.items)
+
+
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
         <p>
           Edit <code>src/App.js</code> and save to reload.
         </p>
@@ -16,6 +20,9 @@ function App() {
           rel="noopener noreferrer"
         >
           Learn React
+          {items.map((item) => {
+            return <li>{item.name}</li>
+          })}
         </a>
       </header>
     </div>

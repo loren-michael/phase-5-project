@@ -1,6 +1,9 @@
 import React from 'react';
+// import { useState, useEffect, useContext } from 'react';
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import './App.css';
 import { useSelector } from 'react-redux';
+import NavBar from './components/NavBar'
 
 function App() {
 
@@ -8,24 +11,14 @@ function App() {
 
 
   return (
-    <div className="App">
-      <header className="App-header">
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-          {items.map((item) => {
-            return <li>{item.name}</li>
-          })}
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <div>
+        <NavBar  />
+        <Switch> 
+          <Route exact path="/" />
+        </Switch>
+      </div>
+    </BrowserRouter>
   );
 }
 

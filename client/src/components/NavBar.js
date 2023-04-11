@@ -1,8 +1,15 @@
 import React from 'react'
 
-const NavBar = () => {
+const NavBar = ({ items }) => {
+  console.log(items)
   return (
-    <div>NavBar</div>
+    <div>NavBar
+      {items.items.map(item => {
+        return (
+          <li>{item.name}</li>
+        )
+      })}
+    </div>
   )
 }
 

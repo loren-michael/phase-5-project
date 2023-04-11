@@ -1,4 +1,4 @@
-const initialState = { itemsLoading: true, items: [{}] }
+const initialState = { items: [{id: 1, name: "microphone"}] }
 
 const itemsReducer = (state=initialState, action) => {
   switch(action.type) {

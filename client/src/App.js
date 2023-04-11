@@ -1,15 +1,25 @@
-import React from 'react';
-import { BrowserRouter, Switch, Route, Routes } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import './App.css';
+import { useSelector, useDispatch } from 'react-redux';
+
 import NavBar from './components/NavBar'
 
 function App() {
+  const items = useSelector(state => state.items)
 
+  // useEffect(()=>{
+  //   fetch('/items').then(r => {
+  //     if (r.ok) {
+  //       r.json().then()
+  //     }
+  //   })
+  // }, [])
 
   return (
     <BrowserRouter>
       <div>
-        <NavBar  />
+        <NavBar items={items}  />
         <Routes>
           <Route exact path="/" />
         </Routes>

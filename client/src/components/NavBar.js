@@ -4,7 +4,7 @@ const NavBar = ({ items }) => {
   console.log(items)
   return (
     <div>NavBar
-      {items.items.map(item => {
+      {items.map(item => {
         return (
           <li>{item.name}</li>
         )

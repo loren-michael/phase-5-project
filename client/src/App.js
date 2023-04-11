@@ -6,7 +6,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import NavBar from './components/NavBar'
 
 function App() {
-  const items = useSelector(state => state.items)
+  const items = useSelector(state => state.items.items)
 
   // useEffect(()=>{
   //   fetch('/items').then(r => {

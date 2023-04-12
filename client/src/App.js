@@ -1,7 +1,6 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import './App.css';
-import { useSelector, useDispatch } from 'react-redux';
 import Home from './components/Home';
 import StoresContainer from './components/StoresContainer';
 import Store from './components/Store';
@@ -12,20 +11,12 @@ import Profile from './components/Profile';
 import NavBar from './components/NavBar'
 
 function App() {
-  const items = useSelector(state => state.items.items)
 
-  // useEffect(()=>{
-  //   fetch('/items').then(r => {
-  //     if (r.ok) {
-  //       r.json().then()
-  //     }
-  //   })
-  // }, [])
 
   return (
     <BrowserRouter>
       <div>
-        <NavBar items={items}  />
+        <NavBar />
         <Routes>
           <Route exact path="/" element={ <Home /> }/>
           <Route path="/stores" element={ <StoresContainer /> } />

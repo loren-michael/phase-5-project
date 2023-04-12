@@ -1,18 +1,21 @@
-const initialState = { items: [{id: 1, name: "microphone"}] }
+const initialState = { itemsLoading: true, items: [] }
 
 const itemsReducer = (state=initialState, action) => {
   switch(action.type) {
-    case "ADD_ITEM":
+    case "ITEMS_LOADED":
       return {
         ...state,
-        items: [...state.items, action.payload]
+        itemsLoading: false,
+        items: action.payload
       }
-    // case "BLOGS_LOADED":
+    
+    
+    // case "ADD_ITEM":
     //   return {
     //     ...state,
-    //     blogsLoading: false,
-    //     blogs: action.payload
+    //     items: [...state.items, action.payload]
     //   }
+
 
     default:
       return initialState;
@@ -20,8 +23,3 @@ const itemsReducer = (state=initialState, action) => {
 }
 
 export default itemsReducer;
-
-// get request -> controller -> action and does something (updates the database)?
-
-// actions : { type: "LOAD_BLOGS"}
-// actions : { type: "BLOGS_LOADED", payload: data }

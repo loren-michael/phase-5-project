@@ -1,14 +1,9 @@
 import React from 'react'
 
-const NavBar = ({ items }) => {
-  console.log(items)
+const NavBar = () => {
+
   return (
     <div>NavBar
-      {items.map(item => {
-        return (
-          <li>{item.name}</li>
-        )
-      })}
     </div>
   )
 }

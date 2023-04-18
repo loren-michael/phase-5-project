@@ -1,8 +1,10 @@
 import React, { useRef, useState, useEffect } from 'react'
 import '../index.css'
-import { faCheck, faTimes, faInfoCircle } from '@fortawesome/free-solid-svg-icons';
+import { faCheck, faTimes, faInfoCircle, faChampagneGlasses } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
+const USER_REGEX = /^[a-zA-Z][a-zA-Z0-9-_]{3,23}$/;
+const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/;
 
 const SignUp = () => {
   // const userRef = useRef();
@@ -16,15 +18,12 @@ const SignUp = () => {
   const [validPwd, setValidPwd] = useState(false);
   const [pwdFocus, setPwdFocus] = useState(false);
 
-  const [verifyPwd, setVerifyPwd] = useState("")
-  const [verifyMatch, setVerifyMatch] = useState(false);
-  const [verifyFocus, setVerifyFocus] = useState(false);
+  const [matchPwd, setMatchPwd] = useState("")
+  const [validMatch, setValidMatch] = useState(false);
+  const [matchFocus, setMatchFocus] = useState(false);
 
   const [errMsg, setErrMsg] = useState('');
   const [success, setSuccess] = useState(false);
-
-  const USER_REGEX = /^[a-zA-Z][a-zA-Z0-9-_]{3,23}$/;
-  const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/;
 
 
   // set focus to username on page load
@@ -35,27 +34,28 @@ const SignUp = () => {
   // test username against username regex whenever username is changed
   useEffect(() => {
     // const USER_REGEX = /^[a-zA-Z][a-zA-Z0-9-_]{3,23}$/;
-    const result = USER_REGEX.test(username);
-    console.log(result)
-    console.log(username)
-    setValidName(result)
-  }, [USER_REGEX, username])
+    // const result = USER_REGEX.test(username);
+    // console.log(result)
+    // console.log(username)
+    setValidName(USER_REGEX.test(username))
+  }, [username])
 
   // test password against password regex AND verify matching password
   useEffect(() => {
     // const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/;
-    const result = PWD_REGEX.test(password);
-    console.log(result);
-    console.log(password);
-    setValidPwd(result);
-    const match = password === verifyMatch;
-    setVerifyMatch(match);
-  }, [PWD_REGEX, password, verifyMatch]);
+    // const result = PWD_REGEX.test(password);
+    // console.log(result);
+    // console.log(password);
+    setValidPwd(PWD_REGEX.test(password));
+    // const match = (password === matchPwd);
+    // console.log(validMatch)
+    setValidMatch(password === matchPwd);
+  }, [password, matchPwd]);
 
   // remove errors when user is making changes to reverify results
   useEffect(() => {
     setErrMsg('');
-  }, [username, password, verifyPwd])
+  }, [username, password, matchPwd])
 
 
   const handleSubmit = (e) => {
@@ -122,6 +122,7 @@ const SignUp = () => {
           Must begin with a letter.<br></br>
           Letters, numbers, underscores, hyphens allowed.
         </p>
+
         <label htmlFor='password'>
           Password: 
           <span className={validPwd ? "valid" : "hide"}>
@@ -154,12 +155,13 @@ const SignUp = () => {
             <span aria-label='dollar sign'>$</span>
             <span aria-label='percent'>%</span>
         </p>
+
         <label htmlFor='confirmPwd'>
           Confirm Password: 
-          <span className={verifyPwd && verifyMatch ? "valid" : "hide"}>
+          <span className={validMatch && matchPwd ? "valid" : "hide"}>
             <FontAwesomeIcon icon={faCheck}/>
           </span>
-          <span className={verifyPwd || verifyMatch ? "hide" : "invalid"}>
+          <span className={validMatch || !matchPwd ? "hide" : "invalid"}>
             <FontAwesomeIcon icon={faTimes}/>
           </span>
         </label>
@@ -167,19 +169,18 @@ const SignUp = () => {
           required
           type="password"
           id="confirmPwd"
-          value={ verifyPwd }
-          // ref={userRef}
-          onChange={e => setVerifyPwd(e.target.value)}
-          aria-invalid={verifyMatch ? "false" : "true"}
+          value={ matchPwd }
+          onChange={e => setMatchPwd(e.target.value)}
+          aria-invalid={validMatch ? "false" : "true"}
           aria-describedby='confirmnote'
-          onFocus={() => setVerifyFocus(true)}
-          onBlur={() => setVerifyFocus(false)}
+          onFocus={() => setMatchFocus(true)}
+          onBlur={() => setMatchFocus(false)}
           />
-          <p id="confirmnote" className={verifyFocus && !verifyMatch ? "instructions" : "offscreen"}>
+          <p id="confirmnote" className={matchFocus && !validMatch ? "instructions" : "offscreen"}>
             <FontAwesomeIcon icon={faInfoCircle}/>
             Must match the password input field.
           </p>
-        <button disabled={!validName || !validPwd || !verifyMatch ? true : false}>Sign Up</button>
+        <button disabled={!validName || !validPwd || !validMatch ? true : false}>Sign Up</button>
       </form>
       </section>
     // </div>

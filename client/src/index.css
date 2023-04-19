@@ -32,7 +32,12 @@ padding: 1rem 0.5rem;
 
 .navBar {
   width: 100%;
-  min-height: 50px;
+  min-height: 100px;
+}
+
+.loginLinks {
+  float: right;
+  padding: 30px
 }
 
 section {

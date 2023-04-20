@@ -1,6 +1,7 @@
 import React, { useRef, useState, useEffect } from 'react'
 import '../index.css'
-import { faCheck, faTimes, faInfoCircle, faChampagneGlasses } from '@fortawesome/free-solid-svg-icons';
+import { useNavigate } from 'react-router-dom';
+import { faCheck, faTimes, faInfoCircle } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 const USER_REGEX = /^[a-zA-Z][a-zA-Z0-9-_]{3,23}$/;
@@ -11,6 +12,7 @@ const EMAIL_REGEX = /^[A-Za-z0-9.-]+@[A-Za-z0-9.-]+$/;
 const SignUp = () => {
   // const userRef = useRef();
   const errRef = useRef();
+  const navigate = useNavigate();
 
   const [username, setUsername] = useState("");
   const [validName, setValidName] = useState(false);
@@ -30,7 +32,7 @@ const SignUp = () => {
   const [matchFocus, setMatchFocus] = useState(false);
 
   const [errMsg, setErrMsg] = useState('');
-  const [success, setSuccess] = useState(false);
+  // const [success, setSuccess] = useState(false);
 
 
   // test username against username regex whenever username is changed
@@ -81,9 +83,9 @@ const SignUp = () => {
         body: JSON.stringify({
           user: {
             username: username,
-            firstName: firstName,
-            lastName: lastName,
-            emailAddress: emailAddress,
+            first_name: firstName,
+            last_name: lastName,
+            email: emailAddress,
             password: password
           }
         })
@@ -91,6 +93,7 @@ const SignUp = () => {
       .then(r => {
         if (r.ok) {
           r.json().then(user => console.log(user))
+          .then(navigate("/"))
         } else {
           r.json().then(data => console.log(data))
         }

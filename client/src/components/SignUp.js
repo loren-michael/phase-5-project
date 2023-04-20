@@ -79,11 +79,13 @@ const SignUp = () => {
           "Accept": "application/json"
         },
         body: JSON.stringify({
-          username: username,
-          firstName: firstName,
-          lastName: lastName,
-          emailAddress: emailAddress,
-          password: password
+          user: {
+            username: username,
+            firstName: firstName,
+            lastName: lastName,
+            emailAddress: emailAddress,
+            password: password
+          }
         })
       })
       .then(r => {

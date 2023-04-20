@@ -5,6 +5,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 const USER_REGEX = /^[a-zA-Z][a-zA-Z0-9-_]{3,23}$/;
 const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/;
+const EMAIL_REGEX = /^[A-Za-z0-9.-]+@[A-Za-z0-9.-]+$/;
+;
 
 const SignUp = () => {
   // const userRef = useRef();
@@ -14,22 +16,22 @@ const SignUp = () => {
   const [validName, setValidName] = useState(false);
   const [userFocus, setUserFocus] = useState(false);
 
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [emailAddress, setEmailAddress] = useState("");
+  const [validEmail, setValidEmail] = useState(false);
+
   const [password, setPassword] = useState("");
   const [validPwd, setValidPwd] = useState(false);
   const [pwdFocus, setPwdFocus] = useState(false);
 
-  const [matchPwd, setMatchPwd] = useState("")
+  const [matchPwd, setMatchPwd] = useState("");
   const [validMatch, setValidMatch] = useState(false);
   const [matchFocus, setMatchFocus] = useState(false);
 
   const [errMsg, setErrMsg] = useState('');
   const [success, setSuccess] = useState(false);
 
-
-  // set focus to username on page load
-  // useEffect(() => {
-  //   userRef.current.focus();
-  // })
 
   // test username against username regex whenever username is changed
   useEffect(() => {
@@ -57,6 +59,10 @@ const SignUp = () => {
     setErrMsg('');
   }, [username, password, matchPwd])
 
+  useEffect(() => {
+    setValidEmail(EMAIL_REGEX.test(emailAddress))
+  }, [emailAddress])
+
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -74,6 +80,9 @@ const SignUp = () => {
         },
         body: JSON.stringify({
           username: username,
+          firstName: firstName,
+          lastName: lastName,
+          emailAddress: emailAddress,
           password: password
         })
       })
@@ -121,6 +130,53 @@ const SignUp = () => {
           4 to 24 characters.<br></br>
           Must begin with a letter.<br></br>
           Letters, numbers, underscores, hyphens allowed.
+        </p>
+
+        {/* Add first and last name and email address inputs */}
+
+        <label htmlFor='emailaddress'>
+          Email Address: 
+          <span className={validEmail ? "valid" : "hide"}>
+            <FontAwesomeIcon icon={faCheck} />
+          </span>
+          <span className={validEmail || !emailAddress ? "hide" : "invalid"}>
+            <FontAwesomeIcon icon={faTimes} />
+          </span>
+        </label>
+        <input
+          type="text"
+          id="emailAddress"
+          value={ emailAddress }
+          onChange={e => setEmailAddress(e.target.value)}
+        />
+
+
+        <label htmlFor='first_name'>
+          First name: 
+        </label>
+        <input
+          type="text"
+          id="firstName"
+          value={ firstName }
+          onChange={e => setFirstName(e.target.value)}
+          aria-describedby="firstnamenote"
+        />
+        <p id="firstnamenote" className="offscreen">
+          Please enter your first name.
+        </p>
+
+        <label htmlFor='last_name'>
+          Last Name: 
+        </label>
+        <input
+          type="text"
+          id="lastName"
+          value={ lastName }
+          onChange={e => setLastName(e.target.value)}
+          aria-describedby="nastnamenote"
+        />
+        <p id="lastnamenote" className="offscreen">
+          Please enter your last name.
         </p>
 
         <label htmlFor='password'>
@@ -180,7 +236,7 @@ const SignUp = () => {
             <FontAwesomeIcon icon={faInfoCircle}/>
             Must match the password input field.
           </p>
-        <button disabled={!validName || !validPwd || !validMatch ? true : false}>Sign Up</button>
+        <button disabled={!validName || !validPwd || !validMatch || !validEmail ? true : false}>Sign Up</button>
       </form>
       </section>
     // </div>

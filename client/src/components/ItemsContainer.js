@@ -2,8 +2,11 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import ItemCard from './ItemCard'
 
+
 const ItemsContainer = () => {
-  const items = useSelector(store => store.itemsReducer.items)
+  // const items = useSelector(store => store.itemsReducer.items)
+  const items = useSelector(store => store.items)
+
 
   console.log(items)
 

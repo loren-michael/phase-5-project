@@ -9,16 +9,8 @@ const itemsReducer = (state=initialState, action) => {
         items: action.payload
       }
     
-    
-    // case "ADD_ITEM":
-    //   return {
-    //     ...state,
-    //     items: [...state.items, action.payload]
-    //   }
-
-
     default:
-      return initialState;
+      return state;
   }
 }
 

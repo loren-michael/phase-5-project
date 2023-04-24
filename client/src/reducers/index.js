@@ -1,8 +1,11 @@
 import { combineReducers } from "redux";
 import itemsReducer from "./itemsReducer";
-import usersReducer from "./usersReducer";
+// import usersReducer from "./usersReducer";
+import sessionsReducer from './sessionsReducer';
+
 
 export default combineReducers({
-  itemsReducer: itemsReducer,
-  usersReducer: usersReducer
+  items: itemsReducer,
+  // usersReducer: usersReducer,
+  sessions: sessionsReducer,
 })

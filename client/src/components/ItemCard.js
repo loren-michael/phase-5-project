@@ -2,7 +2,7 @@ import React from 'react'
 
 const ItemCard = ({item}) => {
   return (
-    <div>{item.name}</div>
+    <div>this is an item</div>
   )
 }
 

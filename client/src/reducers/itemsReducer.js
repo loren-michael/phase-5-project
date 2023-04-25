@@ -1,12 +1,12 @@
-const initialState = { itemsLoading: true, items: [] }
+const initialState = []
 
 const itemsReducer = (state=initialState, action) => {
   switch(action.type) {
     case "ADD_ITEM":
       return [...state, action.payload ]
     
-    case "":
-      return []
+    // case "":
+    //   return []
     
     default:
       return state;

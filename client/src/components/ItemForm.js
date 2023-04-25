@@ -1,6 +1,9 @@
-import React, { useState } from 'react'
+import React, { useState } from 'react';
+import { addItem } from '../actions/items';
+import { useDispatch } from 'react-redux';
 
 const ItemForm = () => {
+  const dispatch = useDispatch();
   const [item, setItem] = useState({
     title: "",
     image: "",
@@ -15,9 +18,29 @@ const ItemForm = () => {
 
   console.log(item)
 
+  function handleSubmit(e) {
+    e.preventDefault();
+    dispatch(addItem(item))
+
+    // setItem({
+    //   title: "",
+    //   image: "",
+    //   description: "",
+    //   qty: 1,
+    //   category: "",
+    //   condition: "",
+    //   make: "",
+    //   model: "",
+    //   price: 0.00
+    // })
+  }
+
+
+
+
   return (
     <div>
-      <form>
+      <form className="add-item-form" onSubmit={handleSubmit}>
         <label htmlFor='title'> Title: </label>
         <input 
           type='text' 
@@ -32,21 +55,21 @@ const ItemForm = () => {
           value={ item.image }
           onChange={e => setItem({...item, image: e.target.value})}
         />
-        <label htmlFor='description'> Title: </label>
+        <label htmlFor='description'> Description: </label>
         <textarea 
           type='text' 
           id="description" 
           value={ item.description }
           onChange={e => setItem({...item, description: e.target.value})}
         />
-        <label htmlFor='qty'> Title: </label>
+        <label htmlFor='qty'> Qty: </label>
         <input 
           type='text' 
           id="qty" 
           value={ item.qty }
           onChange={e => setItem({...item, qty: e.target.value})}
         />
-        <label htmlFor='category'> Title: </label>
+        <label htmlFor='category'> Category: </label>
         <select required
           name="category"
           value={ item.category }
@@ -94,6 +117,7 @@ const ItemForm = () => {
           value={ item.price }
           onChange={e => setItem({...item, price: e.target.value})}
         />
+        <button>Sell It!</button>
       </form>
     </div>
   )

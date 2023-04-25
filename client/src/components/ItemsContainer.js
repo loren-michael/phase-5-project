@@ -5,8 +5,8 @@ import ItemCard from './ItemCard'
 
 const ItemsContainer = () => {
   // const items = useSelector(store => store.itemsReducer.items)
-  const items = useSelector(store => store.items)
-
+  // const {loggedIn, currentUser } = useSelector(store => store.sessions)
+  const items = useSelector(store => store.items.items)
 
   console.log(items)
 

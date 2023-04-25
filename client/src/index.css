@@ -66,6 +66,7 @@ a, a:visited {
 
 input[type="text"],
 input[type="password"],
+select,
 button,
 textarea {
 font-family: 'Nunito', sans-serif;
@@ -126,4 +127,14 @@ padding: 0.5rem;
 
 .line {
   display: inline-block;
+}
+
+.add-item-form {
+  max-width: 700px;
+  display: flex;
+  margin: auto;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding: 1rem;
+  background-color: rgba(0,0,0,0.4);
 }

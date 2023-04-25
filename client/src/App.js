@@ -10,6 +10,7 @@ import ItemDetails from './components/ItemDetails';
 import Profile from './components/Profile';
 import NavBar from './components/NavBar'
 import SignUp from './components/SignUp';
+import Login from './components/Login';
 
 function App() {
 
@@ -21,6 +22,7 @@ function App() {
         <Routes>
           <Route exact path="/" element={ <Home /> }/>
           <Route path="/signup" element={ <SignUp /> } />
+          <Route path="/login" element={ <Login /> } />
           <Route path="/stores" element={ <StoresContainer /> } />
           <Route path="/stores/:id" element={ <Store /> } />
           <Route path="/cart" element={ <Cart /> } />

@@ -137,8 +137,6 @@ const SignUp = () => {
           Letters, numbers, underscores, hyphens allowed.
         </p>
 
-        {/* Add first and last name and email address inputs */}
-
         <label htmlFor='emailaddress'>
           Email Address: 
           <span className={validEmail ? "valid" : "hide"}>

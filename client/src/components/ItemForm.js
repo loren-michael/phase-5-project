@@ -1,9 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { addItem } from '../actions/items';
 import { useDispatch } from 'react-redux';
 
 const ItemForm = () => {
   const dispatch = useDispatch();
+  const errRef = useRef();
+  const [errors, setErrors] = useState([]);
   const [item, setItem] = useState({
     title: "",
     image: "",
@@ -16,30 +18,51 @@ const ItemForm = () => {
     price: 0.00
   })
 
-  console.log(item)
+
+  function resetForm() {
+    setItem({
+      title: "",
+      image: "",
+      description: "",
+      qty: 1,
+      category: "",
+      condition: "",
+      make: "",
+      model: "",
+      price: 0.00
+    })
+  }
 
   function handleSubmit(e) {
     e.preventDefault();
-    dispatch(addItem(item))
-
-    // setItem({
-    //   title: "",
-    //   image: "",
-    //   description: "",
-    //   qty: 1,
-    //   category: "",
-    //   condition: "",
-    //   make: "",
-    //   model: "",
-    //   price: 0.00
-    // })
+        // post the new item to the db, and if successful add to state and then reset the form
+    fetch('/items', {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Accept": "application/json"
+      },
+      body:JSON.stringify(item)
+    })
+    .then(r => {
+      if (r.ok) {
+        r.json().then(dispatch(addItem(item))).then(resetForm())
+      } else {
+        r.json().then(data => setErrors(data.errors))
+      }
+    })
   }
 
-
-
+  console.log("err", errors)
 
   return (
     <div>
+      
+      {errors.map(err => {
+        return (
+          <p className={errors ? "errmsg" : "offscreen"} aria-live="assertive">{err}</p>
+        )
+      })}
       <form className="add-item-form" onSubmit={handleSubmit}>
         <label htmlFor='title'> Title: </label>
         <input 

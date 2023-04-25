@@ -9,6 +9,7 @@ import ItemsContainer from './components/ItemsContainer';
 import ItemDetails from './components/ItemDetails';
 import Profile from './components/Profile';
 import NavBar from './components/NavBar'
+import SignUp from './components/SignUp';
 
 function App() {
 
@@ -19,6 +20,7 @@ function App() {
         <NavBar />
         <Routes>
           <Route exact path="/" element={ <Home /> }/>
+          <Route path="/signup" element={ <SignUp /> } />
           <Route path="/stores" element={ <StoresContainer /> } />
           <Route path="/stores/:id" element={ <Store /> } />
           <Route path="/cart" element={ <Cart /> } />

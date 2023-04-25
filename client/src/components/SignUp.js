@@ -1,6 +1,6 @@
 import React, { useRef, useState, useEffect } from 'react'
 import '../index.css'
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, NavLink } from 'react-router-dom';
 import { faCheck, faTimes, faInfoCircle } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
@@ -241,6 +241,9 @@ const SignUp = () => {
           </p>
         <button disabled={!validName || !validPwd || !validMatch || !validEmail ? true : false}>Sign Up</button>
       </form>
+      <span>
+        <p>Already Registered?</p><NavLink to="/login">Log In Here!</NavLink>
+      </span>
       </section>
     // </div>
   )

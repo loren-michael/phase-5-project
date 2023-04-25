@@ -5,7 +5,11 @@ const initialState = {
 
 const sessionsReducer = (state=initialState, action) => {
   switch(action.type) {
-
+    case "LOG_IN":
+      return {
+        loggedIn: true,
+        currentUser: action.payload
+      }
     default:
       return state;
   }

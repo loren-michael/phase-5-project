@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { NavLink } from 'react-router-dom';
 
 const Login = () => {
   const [username, setUsername] = useState("");
@@ -54,6 +55,10 @@ const Login = () => {
           )
         })}
       </ul>
+      <span>
+        <p>Need to register?</p>
+        <NavLink to="/signup">Sign Up Here!</NavLink>
+      </span>
     </div>
   )
 }

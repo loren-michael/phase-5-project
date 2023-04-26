@@ -1,29 +1,38 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faS, faCircleUser, faTimes, faInfoCircle, faChampagneGlasses } from '@fortawesome/free-solid-svg-icons';
+import { faCircleUser, faArrowRightFromBracket, faBars } from '@fortawesome/free-solid-svg-icons';
 import logo from '../images/sellit-4.png'
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { deleteSession } from '../actions/sessions';
+
+
 
 const NavBar = () => {
-
-  const {loggedIn, currentUser } = useSelector(store => store.sessions)
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const {loggedIn, currentUser } = useSelector(store => store.sessions);
 
   function handleLogout() {
-    console.log("log me out")
+    fetch('/logout', {
+      method: "DELETE"
+    })
+    .then(dispatch(deleteSession()))
+    .then(navigate('/'))
   }
 
   return (
     <div className="navBar">
       <span>
-        <img src={logo} alt="Sell It!" width="auto" height="150"></img>
+        <a href="/"><img src={logo} alt="Sell It! Home" width="auto" height="150"></img></a>
       </span>
     {/* Make this conditional on current user */}
 
     {loggedIn ? 
-    <span>
-      <div>Welcome, {currentUser.username}!</div>
-      <span onClick={handleLogout}>Logout</span>
+    <span className="loginLinks">
+      <span>Welcome, {currentUser.username}! </span>
+      <FontAwesomeIcon onClick={handleLogout} icon={faArrowRightFromBracket} size="xl" style={{color: "#000000",}} />
+      <FontAwesomeIcon icon={faBars} size="xl" style={{color: "#000000",}} />
     </span>
       :
       <span className="loginLinks">

@@ -1,10 +1,11 @@
 import React, { useState } from 'react'
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { createSession } from '../actions/sessions';
 
 const Login = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState([])
@@ -25,6 +26,7 @@ const Login = () => {
     .then(r => {
       if (r.ok) {
         r.json().then(user => dispatch(createSession(user)))
+        .then(navigate("/"))
       } else {
         r.json().then(data => setErrors(data.errors))
       }

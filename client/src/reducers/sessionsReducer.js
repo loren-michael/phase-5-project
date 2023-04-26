@@ -9,7 +9,9 @@ const sessionsReducer = (state=initialState, action) => {
       return {
         loggedIn: true,
         currentUser: action.payload
-      }
+      };
+    case "DELETE_SESSION":
+      return initialState
     default:
       return state;
   }

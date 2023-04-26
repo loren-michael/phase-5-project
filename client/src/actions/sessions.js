@@ -4,3 +4,10 @@ export const createSession = user => {
     payload: user
   }
 }
+
+export const deleteSession = () => {
+  return {
+    type: "DELETE_SESSION",
+    payload: null
+  }
+}

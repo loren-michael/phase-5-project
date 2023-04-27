@@ -5,23 +5,38 @@ import { Card, Image } from 'semantic-ui-react';
 const ItemCard = ({item}) => {
   // const itemSummary = item.description.substring(0,79);
 
+  // const image = () => {
+    // <Image src={item.image} fluid />
+  // }
+
   return (
-    <span>
-      <Card href={`/items/${item.id}`} style={{height: "300px", margin: "10px"}} >
-        <Card.Content centered>
-          <Card.Header>{item.title}</Card.Header>
-          <Image  
-            style={{
-              margin: "auto",
-              height: "200px",
-              padding: "5px",
-              display: "block"
-            }}
-            src={item.image}
-          />
-        </Card.Content>
-      </Card>
-    </span>
+      <div class="card" href={`/items/${item.id}`} style={{height: "300px", margin: "10px"}} >
+        <div class="content centered">
+          <div class="header">{item.title}</div>  
+          {/* {image} */}
+
+        <div className="center">
+        <img 
+          className="image"
+          class="image top aligned"
+          src={item.image} 
+          alt={item.description}
+          
+        />
+        </div>
+        </div>
+        {/* <Image centered top aligned
+          style={{
+            margin: "auto",
+            height: "200px",
+            width: "auto",
+            padding: "5px",
+            display: "block"
+          }}
+          src={item.image}
+        /> */}
+          
+      </div>
   )
 }
 

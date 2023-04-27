@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import './App.css';
 import Home from './components/Home';
@@ -11,8 +11,19 @@ import Profile from './components/Profile';
 import NavBar from './components/NavBar'
 import SignUp from './components/SignUp';
 import Login from './components/Login';
+import { useDispatch } from 'react-redux';
+import { createSession } from './actions/sessions';
 
 function App() {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    fetch('/me').then(r => {
+      if (r.ok) {
+        r.json().then(user => dispatch(createSession(user)))
+      }
+    })
+  }, [])
 
 
   return (

@@ -14,7 +14,7 @@ const ItemsContainer = () => {
     <div>
       {items.map(item => {
         return (
-          <ItemCard item={item} />
+          <ItemCard item={item} key={item.id} />
         )
       })}
     </div>

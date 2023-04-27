@@ -44,8 +44,6 @@ puts "Creating Users"
 
 
 
-
-
 puts "Adding Items"
 
 i1 = Item.create(

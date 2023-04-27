@@ -1,6 +1,7 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import ItemCard from './ItemCard'
+import { Card } from 'semantic-ui-react';
 
 
 const ItemsContainer = () => {
@@ -11,13 +12,16 @@ const ItemsContainer = () => {
   console.log(items)
 
   return (
-    <div>
+    <Card.Group centered cards>
+    {/* // <div class="ui link cards centered"> */}
       {items.map(item => {
         return (
           <ItemCard item={item} key={item.id} />
         )
       })}
-    </div>
+
+    {/* // </div> */}
+    </Card.Group>
   )
 }
 

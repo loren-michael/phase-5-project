@@ -33,6 +33,7 @@ padding: 1rem 0.5rem;
 .navBar {
   width: 100%;
   min-height: 100px;
+  background-color: #95aa99;
 }
 
 .loginLinks {
@@ -140,13 +141,21 @@ padding: 0.5rem;
 }
 
 .item-card-image {
-  height: 200px
-}
-
-.item-card {
-  display: block;
+  max-width: 375px;
+  max-height: 200px;
+  /* display: block;
   margin-left: auto;
   margin-right: auto;
-  width: 95%;
-  padding-left: 50px
+  padding: 10px;
+  margin-left: auto;
+  margin-right: auto; */
+}
+
+.image-size {
+  max-width: 375px;
+  max-height: 200px;
+}
+
+.item-cards {
+  display: block;
 }

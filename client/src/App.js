@@ -13,6 +13,7 @@ import SignUp from './components/SignUp';
 import Login from './components/Login';
 import { useDispatch } from 'react-redux';
 import { createSession } from './actions/sessions';
+import 'semantic-ui-css/semantic.min.css';
 
 function App() {
   const dispatch = useDispatch();

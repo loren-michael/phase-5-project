@@ -1,16 +1,15 @@
 import React from 'react'
-import SignUp from './SignUp'
-import NavBar from './NavBar'
 import ItemsContainer from './ItemsContainer'
-import ItemForm from './ItemForm'
-// import Login from './Login'
+import { useSelector, useDispatch } from 'react-redux';
+
+
 
 const Home = () => {
+
   return (
     <div>
       <div>
         <ItemsContainer />
-        <ItemForm />
       </div>
     </div>
   )

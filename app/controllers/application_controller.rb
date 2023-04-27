@@ -14,7 +14,7 @@ class ApplicationController < ActionController::API
     end
 
     def render_422(exception)
-      render json: { errors: exception.redord.errors.full_messages }, status: 422
+      render json: { errors: exception.record.errors.full_messages }, status: 422
     end
 
 end

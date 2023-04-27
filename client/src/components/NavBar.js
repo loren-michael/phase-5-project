@@ -7,7 +7,6 @@ import { useSelector, useDispatch } from 'react-redux';
 import { deleteSession } from '../actions/sessions';
 
 
-
 const NavBar = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -26,7 +25,6 @@ const NavBar = () => {
       <span>
         <a href="/"><img src={logo} alt="Sell It! Home" width="auto" height="150"></img></a>
       </span>
-    {/* Make this conditional on current user */}
 
     {loggedIn ? 
     <span className="loginLinks">
@@ -40,8 +38,6 @@ const NavBar = () => {
         <FontAwesomeIcon icon={faCircleUser} size="xl" style={{color: "#000000",}} />
       </span>
     }
-
-
 
     </div>
   )

@@ -3,6 +3,8 @@ import '../index.css'
 import { useNavigate, NavLink } from 'react-router-dom';
 import { faCheck, faTimes, faInfoCircle } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { useDispatch } from 'react-redux';
+import { createSession } from '../actions/sessions';
 
 const USER_REGEX = /^[a-zA-Z][a-zA-Z0-9-_]{3,23}$/;
 const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/;
@@ -13,6 +15,7 @@ const SignUp = () => {
   // const userRef = useRef();
   const errRef = useRef();
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const [username, setUsername] = useState("");
   const [validName, setValidName] = useState(false);
@@ -92,10 +95,10 @@ const SignUp = () => {
       })
       .then(r => {
         if (r.ok) {
-          r.json().then(user => console.log(user))
+          r.json().then(user => dispatch(createSession(user)))
           .then(navigate("/"))
         } else {
-          r.json().then(data => console.log(data))
+          r.json().then(data => setErrMsg(data.error))
         }
       })
     }

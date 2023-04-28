@@ -31,6 +31,8 @@ padding: 1rem 0.5rem;
 }
 
 .navBar {
+  position: sticky;
+  top: 0;
   width: 100%;
   min-height: 100px;
   background-color: #95aa99;
@@ -157,4 +159,30 @@ padding: 0.5rem;
 .center {
   display: block;
   text-align: center;
+}
+
+.filter-menu {
+  background-color: #95aa99;
+  height: 50px;
+  width: 100%;
+  position: top;
+  top: 0;
+}
+
+.category {
+  background-color: #95aa99;
+  font-family: 'Nunito', sans-serif;
+  font-size: medium;
+  display: inline-flex;
+  padding: 15px;
+  border-right: 1px solid #000;
+}
+
+.category-last {
+  background-color: #95aa99;
+  font-family: 'Nunito', sans-serif;
+  font-size: medium;
+  display: inline-flex;
+  padding: 15px;
+  /* border-right: 1px solid #000; */
 }

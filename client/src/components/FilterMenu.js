@@ -3,31 +3,40 @@ import React from 'react'
 
 const FilterMenu = ({ setFilterCategory }) => {
 
-  return (
-    // <div className="filter-menu">
-    //   <span className="category" onClick={setFilterCategory("All")}>View All</span>
-    //   <span className="category" onClick={e => setFilterCategory(e.target.value)}>Guitars</span>
-    //   <span className="category" onClick={e => setFilterCategory(e.target.value)}>Keyboards & Synth</span>
-    //   <span className="category" onClick={e => setFilterCategory(e.target.value)}>Drums & Percussion</span>
-    //   <span className="category" onClick={e => setFilterCategory(e.target.value)}>Folk Instruments</span>
-    //   <span className="category" onClick={e => setFilterCategory(e.target.value)}>Pedals & Amps</span>
-    //   <span className="category" onClick={e => setFilterCategory(e.target.value)}>Microphones</span>
-    //   <span className="category" onClick={e => setFilterCategory(e.target.value)}>Pro Audio</span>
-    //   <span className="category-last" onClick={e => setFilterCategory(e.target.value)}>Accessories</span>
-    // </div>
+  function setFilter(e) {
+    setFilterCategory(e.target.value)
+  }
 
-    <div class="fluid ui buttons">
-      <button class="ui big button">View All</button>
-      <button class="ui big button">Guitars</button>
-      <button class="ui big button">Keyboards & Synth</button>
-      <button class="ui big button">Drums & Percussion</button>
-      <button class="ui big button">Folk Instruments</button>
-      <button class="ui big button">Pedals & Amps</button>
-      <button class="ui big button">Microphones</button>
-      <button class="ui big button">Pro Audio</button>
-      <button class="ui big button">Accessories</button>
+  return (
+    // <div class="ui attached container menu">
+    //   <div class="ui centered grid">
+    //     <span class="item" onClick={e => setFilter(e)} value="All">View All</span>
+    //     <span class="item" onClick={e => setFilter(e)} value="Guitars">Guitars</span>
+    //     <span class="item" onClick={e => setFilter(e)} value="Keyboards & Synth">Keyboards & Synth</span>
+    //     <span class="item" onClick={e => setFilter(e)} value="Drums & Percussion">Drums & Percussion</span>
+    //     <span class="item" onClick={e => setFilter(e)} value="Folk Instruments">Folk Instruments</span>
+    //     <span class="item" onClick={e => setFilter(e)} value="Pedals & Amps">Pedals & Amps</span>
+    //     <span class="item" onClick={e => setFilter(e)} value="Microphones">Microphones</span>
+    //     <span class="item" onClick={e => setFilter(e)} value="Pro Audio">Pro Audio</span>
+    //     <span class="item" onClick={e => setFilter(e)} value="Accessories">Accessories</span>
+    //   </div>
+    // </div>
+    <div class="ui centered grid menu">
+        <div class="center aligned column">
+            <div class="ui compact menu">
+              <a class="item">View All</a>
+              <a class="item">Guitars</a>
+              <a class="item">Guitars</a>
+              <a class="item">Guitars</a>
+              <a class="item">Guitars</a>
+              <a class="item">Guitars</a>
+              <a class="item">Guitars</a>
+              <a class="item">Guitars</a>
+              <a class="item">Guitars</a>
+            </div>        
+        </div>
     </div>
-  )
+    )
 }
 
 export default FilterMenu

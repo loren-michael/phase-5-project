@@ -22,7 +22,7 @@ const ItemsContainer = () => {
 
   const filterItems = items.filter(item => item.category == filterCategory)
 
-  console.log(filterItems)
+  console.log(filterCategory)
 
   return (
     <div>
@@ -30,6 +30,7 @@ const ItemsContainer = () => {
         <FilterMenu setFilterCategory={setFilterCategory} />
         <br></br>
       </div>
+      <br></br>
       <div class="ui cards centered">
       
         {displayItems.map(item => {

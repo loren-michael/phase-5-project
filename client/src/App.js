@@ -14,6 +14,7 @@ import Login from './components/Login';
 import { useDispatch } from 'react-redux';
 import { createSession } from './actions/sessions';
 import 'semantic-ui-css/semantic.min.css';
+import { loadItems } from './actions/items';
 
 function App() {
   const dispatch = useDispatch();
@@ -27,7 +28,7 @@ function App() {
   }, [])
 
   useEffect(() => {
-    fetch('/items').then(r=>r.json().then(data => dispatch({type: "LOAD_ITEMS", payload: data})))
+    dispatch(loadItems())
   }, [])
 
 

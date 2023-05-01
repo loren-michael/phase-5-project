@@ -34,11 +34,11 @@ const ItemsContainer = () => {
       <br></br>
       <div class="ui cards centered">
       
-        {displayItems.map(item => {
+        {/* {items.map(item => {
           return (
             <ItemCard item={item} key={item.id} />
           )
-        })}
+        })} */}
       </div>
     </div>
   )

@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 
 
 const ItemCard = ({item}) => {
-  const itemSummary = item.description.substring(0,39);
+  // const itemSummary = item.description.substring(0,39);
   const navigate = useNavigate()
 
   console.log(item.id)

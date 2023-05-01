@@ -1,7 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { Provider } from 'react-redux';
-import { createStore } from 'redux';
+import { applyMiddleware, createStore } from 'redux';
+import thunk from 'redux-thunk';
 // import { store } from './app/store';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
@@ -9,7 +10,7 @@ import rootReducer from './reducers';
 // import 'semantic-ui-css/semantic.min.css'
 
 
-const store = createStore(rootReducer, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__())
+const store = createStore(rootReducer, applyMiddleware(thunk))
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));

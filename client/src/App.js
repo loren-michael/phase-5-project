@@ -26,6 +26,10 @@ function App() {
     })
   }, [])
 
+  useEffect(() => {
+    fetch('/items').then(r=>r.json().then(data => dispatch({type: "LOAD_ITEMS", payload: data})))
+  }, [])
+
 
   return (
     <BrowserRouter>

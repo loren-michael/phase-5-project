@@ -11,21 +11,13 @@ const ItemsContainer = () => {
 
   const [displayItems, setDisplayItems] = useState(items)
 
-  // useEffect(() => {
-  //   if (filterCategory === "All") {
-  //     setDisplayItems(items)
-  //   } else {
-  //     const categoryItems = items.filter(item => item.category === filterCategory)
-  //     setDisplayItems(categoryItems)
-  //   }
-  // }, [displayItems])
 
-  const filterItems = items.filter(item => item.category == filterCategory)
+  const filterItems = items.filter(item => item.category === filterCategory)
 
   console.log(filterCategory)
 
   return (
-    <div>
+    <div id="background-color">
       <div>
         <FilterMenu setFilterCategory={setFilterCategory} />
         <br></br>
@@ -33,7 +25,7 @@ const ItemsContainer = () => {
       <br></br>
       <div class="ui cards centered">
       
-        {displayItems.map(item => {
+        {items.map(item => {
           return (
             <ItemCard item={item} key={item.id} />
           )

@@ -5,6 +5,7 @@ import { faCheck, faTimes, faInfoCircle } from '@fortawesome/free-solid-svg-icon
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { useDispatch } from 'react-redux';
 import { createSession } from '../actions/sessions';
+import NavBar from './NavBar';
 
 const USER_REGEX = /^[a-zA-Z][a-zA-Z0-9-_]{3,23}$/;
 const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/;
@@ -105,7 +106,8 @@ const SignUp = () => {
   }
 
   return (
-    // <div>
+    <div>
+      {/* <NavBar /> */}
       <section>
       <h3>Sign Up</h3>
       {/* If errMsg exists, we will display it, otherwise it just displays offscreen but is still available to screen readers rather than display=none removing from the document */}
@@ -248,7 +250,7 @@ const SignUp = () => {
         <p>Already Registered?</p><NavLink to="/login">Log In Here!</NavLink>
       </span>
       </section>
-    // </div>
+    </div>
   )
 }
 

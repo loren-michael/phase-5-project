@@ -2,7 +2,7 @@ import React from 'react';
 
 
 const ItemCard = ({item}) => {
-  const itemSummary = item.description.substring(0,79);
+  const itemSummary = item.description.substring(0,39);
 
 
   return (
@@ -15,10 +15,11 @@ const ItemCard = ({item}) => {
               class="image top aligned"
               src={item.image} 
               alt={item.description}
+              id="item-card-image"
             />
           </div>
-          <div>{itemSummary}</div>
         </div>
+        <button class="ui button">View Item</button>
       </div>
   )
 }

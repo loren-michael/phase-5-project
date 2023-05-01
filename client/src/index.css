@@ -168,3 +168,8 @@ padding: 0.5rem;
   background-color: #95aa99;
 
 }
+
+#item-card-image {
+  max-height: 150px;
+  padding-top: 20px;
+}

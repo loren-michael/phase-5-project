@@ -20,7 +20,7 @@ export const addItem = item => {
 
 export const loadItems = () => {
   return (dispatch) => {
-    fetch(baseURL + "/items", {
+    fetch("/items", {
       method: "GET",
       headers: headers
     })

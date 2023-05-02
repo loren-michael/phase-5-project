@@ -32,14 +32,14 @@ const ItemsContainer = () => {
         <br></br>
       </div>
       <br></br>
-      <div class="ui cards centered">
+      {/* <div class="ui cards centered"> */}
       
         {/* {items.map(item => {
           return (
             <ItemCard item={item} key={item.id} />
           )
         })} */}
-      </div>
+      {/* </div> */}
     </div>
   )
 }

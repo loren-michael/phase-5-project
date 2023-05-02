@@ -51,4 +51,4 @@ end
 
 gem 'active_model_serializers', '~> 0.10.12'
 
-gem 'money-rails', '~> 1.12'
+# gem 'money-rails', '~> 1.12'

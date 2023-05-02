@@ -3,9 +3,7 @@ class ItemsController < ApplicationController
 
   # GET /items
   def index
-    @items = Item.all
-
-    render json: @items
+    render json: Item.all
   end
 
   # GET /items/1
@@ -34,8 +32,6 @@ class ItemsController < ApplicationController
       model: params[:model],
       price: params[:price]
     )
-
-
   end
 
   # PATCH/PUT /items/1

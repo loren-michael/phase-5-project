@@ -23,10 +23,8 @@ const NavBar = () => {
   return (
     <div className="navBar">
       <span>
-        <a href="/"><img src={logo} alt="Sell It! Home" width="auto" height="150"></img></a>
-      </span>
-
-      {loggedIn ? 
+        <img src={logo} alt="Sell It! Home" class="h-36"></img>
+        {loggedIn ? 
       <span className="loginLinks">
         <span>Welcome, {currentUser.username}! </span>
         <FontAwesomeIcon onClick={handleLogout} icon={faArrowRightFromBracket} size="xl" style={{color: "#000000",}} />
@@ -38,23 +36,7 @@ const NavBar = () => {
           <FontAwesomeIcon icon={faCircleUser} size="xl" style={{color: "#000000",}} />
         </span>
       }
-
-      {/* <div class="ui centered grid menu">
-        <div class="center aligned column">
-          <div class="ui compact menu">
-            <a class="item">View All</a>
-            <a class="item">Guitars</a>
-            <a class="item">Guitars</a>
-            <a class="item">Guitars</a>
-            <a class="item">Guitars</a>
-            <a class="item">Guitars</a>
-            <a class="item">Guitars</a>
-            <a class="item">Guitars</a>
-            <a class="item">Guitars</a>
-          </div>        
-        </div>
-      </div>     */}
-
+      </span>
     </div>
   )
 }

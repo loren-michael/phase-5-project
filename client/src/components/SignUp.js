@@ -6,6 +6,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { useDispatch } from 'react-redux';
 import { createSession } from '../actions/sessions';
 import NavBar from './NavBar';
+import logo from '../images/sellit-4.png'
+
 
 const USER_REGEX = /^[a-zA-Z][a-zA-Z0-9-_]{3,23}$/;
 const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/;
@@ -99,7 +101,7 @@ const SignUp = () => {
           r.json().then(user => dispatch(createSession(user)))
           .then(navigate("/"))
         } else {
-          r.json().then(data => setErrMsg(data.error))
+          r.json().then(data => setErrMsg(data.errors))
         }
       })
     }
@@ -107,7 +109,7 @@ const SignUp = () => {
 
   return (
     <div>
-      {/* <NavBar /> */}
+      <span><img src={logo} alt="Sell It! Home" class="h-36"></img></span>
       <section>
       <h3>Sign Up</h3>
       {/* If errMsg exists, we will display it, otherwise it just displays offscreen but is still available to screen readers rather than display=none removing from the document */}

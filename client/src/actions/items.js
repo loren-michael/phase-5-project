@@ -1,4 +1,4 @@
-const baseURL = 'http://localhost:3000';
+// const baseURL = 'http://localhost:3000';
 const headers = {
   "Content-Type": "application/json",
   "Accept": "application/json"
@@ -7,7 +7,7 @@ const headers = {
 export const addItem = item => {
   return (dispatch)  => {
     console.log("dispatch action")
-    fetch(baseURL + "/items", {
+    fetch("/items", {
       method: "POST",
       headers: headers,
       body: JSON.stringify(item)

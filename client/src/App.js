@@ -19,13 +19,13 @@ import { loadItems } from './actions/items';
 function App() {
   const dispatch = useDispatch();
 
-  // useEffect(() => {
-  //   fetch('/me').then(r => {
-  //     if (r.ok) {
-  //       r.json().then(user => dispatch(createSession(user)))
-  //     }
-  //   })
-  // }, [])
+  useEffect(() => {
+    fetch('/me').then(r => {
+      if (r.ok) {
+        r.json().then(user => dispatch(createSession(user)))
+      }
+    })
+  }, [])
 
   useEffect(() => {
     dispatch(loadItems())
@@ -34,7 +34,7 @@ function App() {
 
   return (
     <BrowserRouter>
-      <div>
+      <div id="background-color">
         {/* <NavBar /> */}
         <Routes>
           <Route exact path="/" element={ <Home /> }/>

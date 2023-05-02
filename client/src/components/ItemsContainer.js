@@ -9,20 +9,21 @@ const ItemsContainer = () => {
   const [filterCategory, setFilterCategory] = useState("All")
   const items = useSelector(store => store.items)
 
-  const [displayItems, setDisplayItems] = useState(items)
+  const [displayItems, setDisplayItems] = useState(items.items)
 
   useEffect(() => {
-    if (filterCategory == "All") {
-      setDisplayItems(items)
+    if (filterCategory === "All") {
+      const allItems = items.items
+      setDisplayItems(allItems)
     } else {
-      const filterItems = items.filter(item => item.category == filterCategory)
+      const filterItems = items.items.filter(item => item.category === filterCategory)
       setDisplayItems(filterItems)
     }
   }, [filterCategory])
 
 
-
-  console.log(filterCategory)
+  // console.log(items)
+  // console.log(filterCategory)
   // console.log(filterItems)
 
   return (
@@ -33,11 +34,11 @@ const ItemsContainer = () => {
       </div>
       <br></br>
       <div class="ui cards centered">
-        {/* {items.map(item => {
+        {displayItems.map(item => {
           return (
             <ItemCard item={item} key={item.id} />
           )
-        })} */}
+        })}
       </div>
     </div>
   )

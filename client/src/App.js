@@ -12,23 +12,30 @@ import NavBar from './components/NavBar'
 import SignUp from './components/SignUp';
 import Login from './components/Login';
 import { useDispatch } from 'react-redux';
-import { createSession } from './actions/sessions';
+import { createSession, loadSession } from './actions/sessions';
 import 'semantic-ui-css/semantic.min.css';
 import { loadItems } from './actions/items';
+
 
 function App() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    fetch('/me').then(r => {
-      if (r.ok) {
-        r.json().then(user => dispatch(createSession(user)))
-      }
-    })
+    dispatch(loadItems())
+    dispatch(loadSession())
+    // fetch('/me').then(r => {
+    //   if (r.ok) {
+    //     r.json().then(user => dispatch(createSession(user)))
+    //   }
+    // })
   }, [])
+  
+  // useEffect(() => {
+
+  // }, [])
 
   useEffect(() => {
-    dispatch(loadItems())
+    
   }, [])
 
 

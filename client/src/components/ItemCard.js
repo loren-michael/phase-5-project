@@ -6,7 +6,7 @@ const ItemCard = ({item}) => {
   // const itemSummary = item.description.substring(0,39);
   const navigate = useNavigate()
 
-  console.log(item.id)
+  // console.log(item.id)
 
   function handleViewItem(e) {
     navigate(`/items/${item.id}`)

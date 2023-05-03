@@ -5,6 +5,11 @@ const initialState = {
 
 const sessionsReducer = (state=initialState, action) => {
   switch(action.type) {
+    case "LOAD_SESSION":
+      return {
+        loggedIn: true,
+        currentUser: action.payload
+      }
     case "CREATE_SESSION":
       return {
         loggedIn: true,

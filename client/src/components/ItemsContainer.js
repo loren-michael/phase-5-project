@@ -5,11 +5,13 @@ import FilterMenu from './FilterMenu';
 
 const ItemsContainer = () => {
   // const items = useSelector(store => store.itemsReducer.items)
-  // const {loggedIn, currentUser } = useSelector(store => store.sessions)
-  const [filterCategory, setFilterCategory] = useState("All")
   const items = useSelector(store => store.items)
+  const [filterCategory, setFilterCategory] = useState("All")
+  const [displayItems, setDisplayItems] = useState([])
 
-  const [displayItems, setDisplayItems] = useState(items.items)
+  useEffect(() => {
+    setDisplayItems(items.items)
+  }, [items])
 
   useEffect(() => {
     if (filterCategory === "All") {
@@ -19,10 +21,10 @@ const ItemsContainer = () => {
       const filterItems = items.items.filter(item => item.category === filterCategory)
       setDisplayItems(filterItems)
     }
-  }, [filterCategory])
+  }, [])
 
 
-  // console.log(items)
+  // console.log(items.items)
   // console.log(filterCategory)
   // console.log(filterItems)
 

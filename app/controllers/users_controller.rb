@@ -8,7 +8,7 @@ class UsersController < ApplicationController
     render json: @users
   end
 
-  # GET /users/1
+  # GET /me, /users/1
   def show
     render json: @current_user
   end

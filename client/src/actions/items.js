@@ -20,10 +20,8 @@ export const addItem = item => {
 
 export const loadItems = () => {
   return (dispatch) => {
-    fetch("/items", {
-      method: "GET",
-      headers: headers
-    })
+    console.log("load items")
+    fetch("/items")
     .then(r => r.json())
     .then(data => dispatch({type: "LOAD_ITEMS", payload: data}))
   }

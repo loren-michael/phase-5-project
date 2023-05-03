@@ -184,7 +184,7 @@ i12 = Item.create(
   image: "https://media.guitarcenter.com/is/image/MMGS7/L42549000001000-00-720x720.jpg",
   description: "Brand new Roland Keytar, black with red trim, all black keys. 49 keys",
   qty: 1,
-  category: "Keyboards & Synths",
+  category: "Keyboards & Synth",
   condition: "New",
   make: "Roland",
   model: "AX-Edge",

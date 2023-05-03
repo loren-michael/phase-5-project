@@ -1,5 +1,6 @@
 const initialState = {
-  items: []
+  items: [],
+  displayItem: {}
 }
 
 const itemsReducer = (state=initialState, action) => {
@@ -10,7 +11,10 @@ const itemsReducer = (state=initialState, action) => {
         items: action.payload
       };
     case "LOAD_ITEM":
-      return action.payload
+      return {
+        ...state,
+        displayItem: action.payload
+      }
     case "ADD_ITEM":
       return {
         ...state,

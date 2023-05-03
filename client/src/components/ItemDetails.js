@@ -12,18 +12,18 @@ const ItemDetails = () => {
   const itemId = params.id;
   // const store = useSelector(store => store)
   const items = useSelector(store => store.items);
+  const displayItem = useSelector(store => items.displayItem)
   const [loading, setLoading] = useState(true)
-  const [displayItem, setDisplayItem] = useState({})
+  // const [displayItem, setDisplayItem] = useState({})
   
   
   useEffect(() => {
     dispatch(loadItem(itemId))
-    if (items) {
+    if (displayItem) {
       setLoading(false)
     }
-  }, [])
-  
-  // console.log(items)
+  }, [itemId, displayItem, dispatch])
+
 
   return (
     <div>
@@ -34,10 +34,10 @@ const ItemDetails = () => {
       :
         <div>
           <div class="w-2/4 p-2 font-sans text-2xl font-semibold text-center">
-            {items.title}
+            {displayItem.title}
           </div>
           <div class="w-2/4 h-96">
-            <img class="max-h-96 object-scale-down" src={items.image} alt={items.title}></img>
+            <img class="max-h-96 object-scale-down" src={displayItem.image} alt={displayItem.title}></img>
           </div>
         </div>
       }

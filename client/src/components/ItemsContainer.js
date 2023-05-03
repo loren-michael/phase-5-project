@@ -8,7 +8,6 @@ const ItemsContainer = () => {
   const items = useSelector(store => store.items)
   const [filterCategory, setFilterCategory] = useState("All")
   const [displayItems, setDisplayItems] = useState([])
-  const [detailedItem, setDetailedItem] = useState({})
 
   useEffect(() => {
     setDisplayItems(items.items)
@@ -35,7 +34,7 @@ const ItemsContainer = () => {
       <div class="ui cards centered">
         {displayItems.map(item => {
           return (
-            <ItemCard item={item} key={item.id} setDetailedItem={setDetailedItem} />
+            <ItemCard item={item} key={item.id} />
           )
         })}
       </div>

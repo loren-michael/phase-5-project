@@ -32,12 +32,19 @@ const ItemDetails = () => {
       {loading ? 
         <div class="p-9">Item details loading...</div>
       :
-        <div>
-          <div class="w-2/4 p-2 font-sans text-2xl font-semibold text-center">
-            {displayItem.title}
+        <div class="columns-2">
+          <div>
+            <div class="max-w-2/4 p-2 font-sans text-2xl font-semibold text-center">
+              {displayItem.title}
+            </div>
+            <div class="max-w-2/4 h-96">
+              <img class="m-auto max-h-96 object-scale-down" src={displayItem.image} alt={displayItem.title}></img>
+            </div>
           </div>
-          <div class="w-2/4 h-96">
-            <img class="max-h-96 object-scale-down" src={displayItem.image} alt={displayItem.title}></img>
+          <div class="w-2/4 p-2 font-sans">
+            <div class="font-sans">
+              {displayItem.description}
+            </div>
           </div>
         </div>
       }

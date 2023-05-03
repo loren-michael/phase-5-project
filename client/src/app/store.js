@@ -1,12 +1,14 @@
 import { configureStore } from '@reduxjs/toolkit';
 import itemsReducer from '../reducers/itemsReducer';
 import usersReducer from '../reducers/usersReducer';
-import sessionsReducer from '../reducers/sessionsReducer'
+import sessionsReducer from '../reducers/sessionsReducer';
+import cartsReducer from '../reducers/cartsReducer';
 
 export const store = configureStore({
   reducer: {
     items: itemsReducer,
     user: usersReducer,
-    session: sessionsReducer
+    session: sessionsReducer,
+    carts: cartsReducer
   },
 })

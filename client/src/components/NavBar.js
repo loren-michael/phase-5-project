@@ -1,7 +1,7 @@
 import React from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCircleUser, faArrowRightFromBracket, faBars } from '@fortawesome/free-solid-svg-icons';
+import { faCircleUser, faArrowRightFromBracket, faBars, faCartShopping } from '@fortawesome/free-solid-svg-icons';
 import logo from '../images/sellit-4.png'
 import { useSelector, useDispatch } from 'react-redux';
 import { deleteSession } from '../actions/sessions';
@@ -29,6 +29,7 @@ const NavBar = () => {
         {loggedIn ? 
           <span class="float-right" className="loginLinks">
             <span class="font-sans font-medium text-lg pr-5 ">Welcome, {currentUser.username}! </span>
+            <FontAwesomeIcon icon={faCartShopping} size="xl" style={{color: "#000000", padding: "10px"}} />
             <FontAwesomeIcon onClick={handleLogout} icon={faArrowRightFromBracket} size="xl" style={{color: "#000000", padding: "10px"}} />
             <FontAwesomeIcon icon={faBars} size="xl" style={{color: "#000000", padding: "10px"}} />
           </span>

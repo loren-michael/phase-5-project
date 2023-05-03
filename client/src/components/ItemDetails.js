@@ -41,9 +41,18 @@ const ItemDetails = () => {
               <img class="m-auto max-h-96 object-scale-down" src={displayItem.image} alt={displayItem.title}></img>
             </div>
           </div>
-          <div class="w-2/4 p-2 font-sans">
-            <div class="font-sans">
+          <div class="max-w-2/4 p-2 font-sans">
+            <div class="font-semibold p-5">
+              More Details:
+            </div>
+            <div class="font-sans h-48">
               {displayItem.description}
+              <br></br>
+              <br></br>
+              {displayItem.price}
+            </div>
+            <div>
+              <button class="rounded-none">Add To Cart</button>
             </div>
           </div>
         </div>

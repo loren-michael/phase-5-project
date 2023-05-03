@@ -21,12 +21,8 @@ const ItemsContainer = () => {
       const filterItems = items.items.filter(item => item.category === filterCategory)
       setDisplayItems(filterItems)
     }
-  }, [])
+  }, [filterCategory])
 
-
-  // console.log(items.items)
-  // console.log(filterCategory)
-  // console.log(filterItems)
 
   return (
     <div id="background-color">

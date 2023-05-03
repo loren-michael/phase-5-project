@@ -18,9 +18,16 @@ export const addItem = item => {
   }
 }
 
+export const loadItem = id => {
+  return (dispatch) => {
+    fetch('/items/' + id)
+    .then(r => r.json())
+    .then(item => dispatch({type: "LOAD_ITEM", payload: item}))
+  }
+}
+
 export const loadItems = () => {
   return (dispatch) => {
-    console.log("load items")
     fetch("/items")
     .then(r => r.json())
     .then(data => dispatch({type: "LOAD_ITEMS", payload: data}))

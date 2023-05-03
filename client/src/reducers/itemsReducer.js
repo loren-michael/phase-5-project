@@ -9,6 +9,8 @@ const itemsReducer = (state=initialState, action) => {
         ...state,
         items: action.payload
       };
+    case "LOAD_ITEM":
+      return action.payload
     case "ADD_ITEM":
       return {
         ...state,

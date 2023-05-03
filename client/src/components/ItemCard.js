@@ -2,18 +2,19 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
 
-const ItemCard = ({item}) => {
+const ItemCard = ({ item, setDetailedItem }) => {
   // const itemSummary = item.description.substring(0,39);
   const navigate = useNavigate()
 
   // console.log(item.id)
 
-  function handleViewItem(e) {
+  function handleViewItem() {
+    setDetailedItem(item)
     navigate(`/items/${item.id}`)
   }
 
   return (
-      <div class="card" href={`/items/${item.id}`} style={{height: "300px", margin: "10px"}} onClick={handleViewItem} >
+      <a class="card" href={`/items/${item.id}`} style={{height: "300px", margin: "10px"}} onClick={handleViewItem} >
         <div class="content centered">
           <div class="header">{item.title}</div>  
           <div className="center">
@@ -27,7 +28,7 @@ const ItemCard = ({item}) => {
           </div>
         </div>
         <button class="ui button" onClick={handleViewItem}>View Item</button>
-      </div>
+      </a>
   )
 }
 

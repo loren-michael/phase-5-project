@@ -109,7 +109,7 @@ const SignUp = () => {
 
   return (
     <div>
-      <span><img src={logo} alt="Sell It! Home" class="h-36"></img></span>
+      <span><a href="/"><img src={logo} alt="Sell It! Home" class="h-36"></img></a></span>
       <section>
       <h3>Sign Up</h3>
       {/* If errMsg exists, we will display it, otherwise it just displays offscreen but is still available to screen readers rather than display=none removing from the document */}

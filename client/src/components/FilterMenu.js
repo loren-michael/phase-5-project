@@ -5,18 +5,19 @@ const FilterMenu = ({ setFilterCategory }) => {
 
 
   return (
-    <div class="ui attached container menu">
-      <div class="ui centered grid">
-        <button class="item" onClick={() => setFilterCategory("All")} value="All">View All</button>
-        <button class="item" onClick={() => setFilterCategory("Guitars")} value="Guitars">Guitars</button>
-        <button class="item" onClick={() => setFilterCategory("Keyboards & Synth")} value="Keyboards & Synth">Keyboards & Synth</button>
-        <button class="item" onClick={() => setFilterCategory("Drums & Percussion")} value="Drums & Percussion">Drums & Percussion</button>
-        <button class="item" onClick={() => setFilterCategory("Folk Instruments")} value="Folk Instruments">Folk Instruments</button>
-        <button class="item" onClick={() => setFilterCategory("Pedals & Amps")} value="Pedals & Amps">Pedals & Amps</button>
-        <button class="item" onClick={() => setFilterCategory("Microphones")} value="Microphones">Microphones</button>
-        <button class="item" onClick={() => setFilterCategory("Pro Audio")} value="Pro Audio">Pro Audio</button>
-        <button class="item" onClick={() => setFilterCategory("Accessories")} value="Accessories">Accessories</button>
-      </div>
+    <div class="flex flex-wrap justify-center">
+    {/* // <div class="center aligned column"> */}
+      {/* <div class="ui centered grid"> */}
+        <button class="font-sans font-semibold" onClick={() => setFilterCategory("All")} value="All">View All</button>
+        <button class="font-sans font-semibold" onClick={() => setFilterCategory("Guitars")} value="Guitars">Guitars</button>
+        <button class="font-sans font-semibold" onClick={() => setFilterCategory("Keyboards & Synth")} value="Keyboards & Synth">Keyboards & Synth</button>
+        <button class="font-sans font-semibold" onClick={() => setFilterCategory("Drums & Percussion")} value="Drums & Percussion">Drums & Percussion</button>
+        <button class="font-sans font-semibold" onClick={() => setFilterCategory("Folk Instruments")} value="Folk Instruments">Folk Instruments</button>
+        <button class="font-sans font-semibold" onClick={() => setFilterCategory("Pedals & Amps")} value="Pedals & Amps">Pedals & Amps</button>
+        <button class="font-sans font-semibold" onClick={() => setFilterCategory("Microphones")} value="Microphones">Microphones</button>
+        <button class="font-sans font-semibold" onClick={() => setFilterCategory("Pro Audio")} value="Pro Audio">Pro Audio</button>
+        <button class="font-sans font-semibold" onClick={() => setFilterCategory("Accessories")} value="Accessories">Accessories</button>
+      {/* </div> */}
     </div>
     // <div 
       // class="ui centered grid menu" 

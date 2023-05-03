@@ -37,7 +37,7 @@ const Login = () => {
 
   return (
     <div>
-      <span><img src={logo} alt="Sell It! Home" class="h-36"></img></span>
+      <span><a href="/"><img src={logo} alt="Sell It! Home" class="h-36"></img></a></span>
       <section>
         <h3>Log In</h3>
         {errors ? <p>{errors.map(err => <p key={err} className="errMsg" aria-live="assertive">{err}</p>)}</p> : null}

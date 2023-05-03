@@ -34,7 +34,7 @@ const NavBar = () => {
           </span>
         :
         <span class="float-right" className="loginLinks">
-            <NavLink to="/signup">Log In or Sign Up </NavLink>
+            <NavLink to="/login">Log In</NavLink>  or<NavLink to="/signup"> Sign Up </NavLink>
             <FontAwesomeIcon icon={faCircleUser} size="xl" style={{color: "#000000",}} />
           </span>
       }

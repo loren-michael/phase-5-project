@@ -29,7 +29,6 @@ ActiveRecord::Schema.define(version: 2023_05_04_212019) do
   create_table "carts", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.boolean "active"
-    t.integer "items", default: [], array: true
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_carts_on_user_id"

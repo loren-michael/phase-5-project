@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from 'react'
-import NavBar from './NavBar'
-import { useDispatch, useSelector } from 'react-redux'
-import { useParams } from 'react-router-dom'
-import { loadItem } from '../actions/items'
-
+import React, { useEffect, useState } from 'react';
+import NavBar from './NavBar';
+import { useDispatch, useSelector } from 'react-redux';
+import { Link, useParams } from 'react-router-dom';
+import { loadItem } from '../actions/items';
+import { addItemToCart } from '../actions/carts';
 
 
 const ItemDetails = () => {
@@ -15,20 +15,26 @@ const ItemDetails = () => {
   const displayItem = useSelector(store => items.displayItem)
   const [loading, setLoading] = useState(true)
   // const [displayItem, setDisplayItem] = useState({})
-  
+  const loggedIn = useSelector(store => store.sessions.loggedIn)
+  console.log(loggedIn)
+
   
   useEffect(() => {
     dispatch(loadItem(itemId))
     if (displayItem) {
       setLoading(false)
+      console.log(displayItem)
     }
-  }, [itemId, displayItem, dispatch])
+  }, [])
 
+  function handleAddCart() {
+    dispatch(addItemToCart(displayItem))
+  }
 
+console.log(displayItem)
   return (
     <div>
       <NavBar />
-
       {loading ? 
         <div class="p-9">Item details loading...</div>
       :
@@ -41,18 +47,25 @@ const ItemDetails = () => {
               <img class="m-auto max-h-96 object-scale-down" src={displayItem.image} alt={displayItem.title}></img>
             </div>
           </div>
-          <div class="max-w-2/4 p-2 font-sans">
+          <div class="max-w-2/4 p-2 font-sans text-lg">
             <div class="font-semibold p-5">
               More Details:
             </div>
-            <div class="font-sans h-48">
+            <div class="font-sans h-48 text-lg">
               {displayItem.description}
               <br></br>
               <br></br>
-              {displayItem.price}
+              {/* Seller: {displayItem.user.username} */}
+              <br></br>
+              <br></br>
+              ${displayItem.price}
             </div>
             <div>
-              <button class="rounded-none">Add To Cart</button>
+              { loggedIn ?
+                <button onClick={handleAddCart} class="bg-transparent hover:bg-black text-black font-semibold hover:text-white py-2 px-4 border border-black hover:border-transparent rounded">Add To Cart</button>
+                :
+                <Link href="/login" to="/login" class="font-sans bg-black font-semibold hover:text-white py-2 px-4 border border-black rounded">Log in to purchase</Link>
+              }
             </div>
           </div>
         </div>

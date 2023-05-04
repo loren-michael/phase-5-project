@@ -3,7 +3,7 @@ const headers = {
   "Accept": "application/json"
 };
 
-export const addItem = item => {
+export const addItemToCart = item => {
   return (dispatch)  => {
     fetch("/cart", {
       method: "POST",

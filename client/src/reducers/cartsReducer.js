@@ -1,5 +1,5 @@
 const initialState = {
-  items: [],
+  cart: [],
 }
 
 const itemsReducer = (state=initialState, action) => {
@@ -7,7 +7,7 @@ const itemsReducer = (state=initialState, action) => {
     case "LOAD_ITEMS":
       return {
         ...state,
-        items: action.payload
+        cart: action.payload
       };
     case "LOAD_ITEM":
       return {
@@ -17,7 +17,7 @@ const itemsReducer = (state=initialState, action) => {
     case "ADD_ITEM":
       return {
         ...state,
-        items: [...state.items, action.payload]
+        cart: [...state.items, action.payload]
       };
     case "DELETE_ITEM":
       return {

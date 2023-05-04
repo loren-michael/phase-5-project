@@ -40,6 +40,8 @@ c3 = Cart.create(user_id: 3, active: true)
 c4 = Cart.create(user_id: 4, active: true)
 
 
+
+
 puts "Adding Items to Store"
 
 i1 = Item.create(
@@ -186,6 +188,12 @@ i12 = Item.create(
   model: "AX-Edge",
   price: 1199.00,
 )
+
+
+puts "Filling Carts"
+
+ci1 = CartItem.create(cart_id: c1.id, item_id: i5.id)
+ci2 = CartItem.create(cart_id: c1.id, item_id: i12.id)
 
 
 puts "Basic Store Seeding Complete"

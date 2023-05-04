@@ -20,6 +20,10 @@ const NavBar = () => {
     .then(navigate('/'))
   }
 
+  function handleCart() {
+    navigate("/cart")
+  }
+
   return (
     <div class="h-40">
 
@@ -29,13 +33,13 @@ const NavBar = () => {
         {loggedIn ? 
           <span class="float-right" className="loginLinks">
             <span class="font-sans font-medium text-lg pr-5 ">Welcome, {currentUser.username}! </span>
-            <FontAwesomeIcon icon={faCartShopping} size="xl" style={{color: "#000000", padding: "10px"}} />
+            <NavLink to="/cart" href="/cart" class="font-sans text-lg text-black"><FontAwesomeIcon onClick={handleCart} icon={faCartShopping} size="xl" style={{color: "#000000", padding: "10px"}} />Cart</NavLink>
             <FontAwesomeIcon onClick={handleLogout} icon={faArrowRightFromBracket} size="xl" style={{color: "#000000", padding: "10px"}} />
-            <FontAwesomeIcon icon={faBars} size="xl" style={{color: "#000000", padding: "10px"}} />
+            {/* <FontAwesomeIcon icon={faBars} size="xl" style={{color: "#000000", padding: "10px"}} /> */}
           </span>
         :
         <span class="float-right" className="loginLinks">
-            <NavLink to="/login">Log In</NavLink>  or<NavLink to="/signup"> Sign Up </NavLink>
+            <NavLink to="/login">Log In</NavLink>  or  <NavLink to="/signup"> Sign Up </NavLink>
             <FontAwesomeIcon icon={faCircleUser} size="xl" style={{color: "#000000",}} />
           </span>
       }

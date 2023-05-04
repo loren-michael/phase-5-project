@@ -61,7 +61,8 @@ const Login = () => {
             aria-describedby='pwdnote'
           />
           <p id="pwdnote" className="offscreen">Please enter your password</p>
-          <button type="submit" value="Log In">Log In</button>
+          <br></br>
+          <button class="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow" type="submit" value="Log In">Log In</button>
         </form>
         <br></br>
         <br></br>

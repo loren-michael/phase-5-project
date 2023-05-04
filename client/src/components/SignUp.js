@@ -246,7 +246,8 @@ const SignUp = () => {
             <FontAwesomeIcon icon={faInfoCircle}/>
             Must match the password input field.
           </p>
-        <button disabled={!validName || !validPwd || !validMatch || !validEmail ? true : false}>Sign Up</button>
+          <br></br>
+        <button class="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow" disabled={!validName || !validPwd || !validMatch || !validEmail ? true : false}>Sign Up</button>
       </form>
       <span>
         <p>Already Registered?</p><NavLink to="/login">Log In Here!</NavLink>

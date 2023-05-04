@@ -15,12 +15,11 @@ export const addItemToCart = item => {
   }
 }
 
-export const loadCarts = id => {
+export const loadCarts = () => {
   return (dispatch) => {
-    console.log((id))
-    fetch('/carts')
+    fetch('/user_carts')
     .then(r => r.json())
-    .then(cart => dispatch({type: "LOAD_CART", payload: cart}))
+    .then(carts => dispatch({type: "LOAD_CARTS", payload: carts}))
   }
 }
 

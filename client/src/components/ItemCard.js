@@ -29,11 +29,13 @@ const ItemCard = ({ item, setDetailedItem }) => {
               id="item-card-image"
             />
           </div>
-          <span class="">
-            <FontAwesomeIcon icon={faUser} style={{color: "#8c8c8c",}} /> {item.user_id}
-          </span>
-          <span>
-
+        </div>
+        <div>
+          <div class="absolute bottom-20 left-5 font-sans text-lg" >
+            <FontAwesomeIcon icon={faUser} style={{color: "#8c8c8c",}} /> {item.user.username}
+          </div>
+          <span class="absolute bottom-20 right-5 font-sans text-lg">
+            ${item.price}
           </span>
         </div>
         <button class="ui button" onClick={handleViewItem}>View Item</button>

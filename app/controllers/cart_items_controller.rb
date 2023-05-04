@@ -15,13 +15,20 @@ class CartItemsController < ApplicationController
 
   # POST /cart_items
   def create
-    @cart_item = CartItem.new(cart_item_params)
-
-    if @cart_item.save
-      render json: @cart_item, status: :created, location: @cart_item
+    active_cart = @current_user.carts.filter { |cart| cart.active = true }
+    if active_cart
+      render json: active_cart, status: 200
     else
-      render json: @cart_item.errors, status: :unprocessable_entity
+      render json: Cart.create, status: 201
     end
+
+    # @cart_item = CartItem.new(cart_item_params)
+
+    # if @cart_item.save
+    #   render json: @cart_item, status: :created, location: @cart_item
+    # else
+    #   render json: @cart_item.errors, status: :unprocessable_entity
+    # end
   end
 
   # PATCH/PUT /cart_items/1
@@ -46,6 +53,6 @@ class CartItemsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def cart_item_params
-      params.require(:cart_item).permit(:cart_id, :item_id)
+      params.permit(:cart_id, :item_id)
     end
 end

@@ -16,6 +16,7 @@ class UsersController < ApplicationController
   # POST /users
   def create
     user = User.create!(user_params)
+    cart = Cart.create(user_id: user.id, active: true)
     session[:user_id] = user.id
     render json: user, status: :created
   end

@@ -9,6 +9,7 @@
 
 puts "Resetting Tables"
 
+CartItem.destroy_all
 Favorite.destroy_all
 Order.destroy_all
 Cart.destroy_all
@@ -30,21 +31,16 @@ u8 = User.create(username: "user8", first_name: "User", last_name: "Eight", emai
 u9 = User.create(username: "user9", first_name: "User", last_name: "Nine", email: "usernine@gmail.com", password: "password")
 u10 = User.create(username: "user10", first_name: "User", last_name: "Ten", email: "userten@gmail.com", password: "password")
 
-# Is there a way to dispatch seeds?
-# u1 = {username: "user1", first_name: "User", last_name: "One", email: "userone@gmail.com", password: "password"}
-# u2 = {username: "user2", first_name: "User", last_name: "Two", email: "usertwo@gmail.com", password: "password"}
-# u3 = {username: "user3", first_name: "User", last_name: "Three", email: "userthree@gmail.com", password: "password"}
-# u4 = {username: "user4", first_name: "User", last_name: "Four", email: "userfour@gmail.com", password: "password"}
-# u5 = {username: "user5", first_name: "User", last_name: "Five", email: "userfive@gmail.com", password: "password"}
-# u6 = {username: "user6", first_name: "User", last_name: "Six", email: "usersix@gmail.com", password: "password"}
-# u7 = {username: "user7", first_name: "User", last_name: "Seven", email: "userseven@gmail.com", password: "password"}
-# u8 = {username: "user8", first_name: "User", last_name: "Eight", email: "usereight@gmail.com", password: "password"}
-# u9 = {username: "user9", first_name: "User", last_name: "Nine", email: "usernine@gmail.com", password: "password"}
-# u10 = {username: "user10", first_name: "User", last_name: "Ten", email: "userten@gmail.com", password: "password"}
+
+puts "Building Carts"
+
+c1 = Cart.create(user_id: 1, active: true)
+c2 = Cart.create(user_id: 2, active: true)
+c3 = Cart.create(user_id: 3, active: true)
+c4 = Cart.create(user_id: 4, active: true)
 
 
-
-puts "Adding Items"
+puts "Adding Items to Store"
 
 i1 = Item.create(
   user_id: u1.id,

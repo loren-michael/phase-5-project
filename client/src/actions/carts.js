@@ -5,7 +5,7 @@ const headers = {
 
 export const addItemToCart = item => {
   return (dispatch)  => {
-    fetch("/cart", {
+    fetch("/active_cart", {
       method: "POST",
       headers: headers,
       body: JSON.stringify(item)

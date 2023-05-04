@@ -12,26 +12,27 @@ const ItemDetails = () => {
   const itemId = params.id;
   // const store = useSelector(store => store)
   const items = useSelector(store => store.items);
-  const displayItem = useSelector(store => items.displayItem)
+  const displayItem = useSelector(store => store.items.displayItem)
   const [loading, setLoading] = useState(true)
   // const [displayItem, setDisplayItem] = useState({})
   const loggedIn = useSelector(store => store.sessions.loggedIn)
-  console.log(loggedIn)
+  // console.log(loggedIn)
 
   
   useEffect(() => {
     dispatch(loadItem(itemId))
     if (displayItem) {
       setLoading(false)
-      console.log(displayItem)
+      // console.log(displayItem)
     }
   }, [])
 
   function handleAddCart() {
+    console.log(displayItem)
     dispatch(addItemToCart(displayItem))
   }
 
-console.log(displayItem)
+// console.log(displayItem)
   return (
     <div>
       <NavBar />

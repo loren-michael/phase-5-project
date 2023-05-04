@@ -6,7 +6,6 @@ const headers = {
 
 export const loadSession = user => {
   return (dispatch)  => {
-    console.log("load session")
     fetch("/me")
     .then(r => {
       if (r.ok) {

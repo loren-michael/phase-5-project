@@ -13,6 +13,15 @@ class CartsController < ApplicationController
     render json: carts
   end
 
+  def active_cart
+    active_cart = @current_user.carts.filter { |cart| cart.active = true }
+    render json: active_cart
+  end
+
+  def add_to_active_cart
+    
+  end
+
   # GET /carts/1
   def show
     render json: @cart

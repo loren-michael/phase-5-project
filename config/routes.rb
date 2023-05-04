@@ -15,6 +15,8 @@ Rails.application.routes.draw do
   # root "articles#index"
 
   get '/user_carts', to: 'carts#user_carts'
+  get '/active_cart', to: 'carts#active_cart'
+  post '/active_cart', to: 'carts#add_to_active_cart'
 
   get '/hello', to: 'application#hello_world'
 

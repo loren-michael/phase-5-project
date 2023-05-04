@@ -4,16 +4,11 @@ const initialState = {
 
 const itemsReducer = (state=initialState, action) => {
   switch(action.type) {
-    case "LOAD_ITEMS":
+    case "LOAD_CART":
       return {
         ...state,
         cart: action.payload
       };
-    case "LOAD_ITEM":
-      return {
-        ...state,
-        displayItem: action.payload
-      }
     case "ADD_ITEM":
       return {
         ...state,
@@ -22,8 +17,13 @@ const itemsReducer = (state=initialState, action) => {
     case "DELETE_ITEM":
       return {
         ...state,
-        items: state.items.filter(item => item.id !== action.payload.id)
+        cart: state.items.filter(item => item.id !== action.payload.id)
       };
+    case "EMPTY_CART":
+      return {
+        ...state,
+        cart: []
+      }
     default:
       return state;
   }

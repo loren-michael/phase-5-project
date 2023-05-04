@@ -14,7 +14,7 @@ const ItemCard = ({ item, setDetailedItem }) => {
     setDetailedItem(item)
     navigate(`/items/${item.id}`)
   }
-  console.log(item)
+  // console.log(item)
 
   return (
       <a class="card" href={`/items/${item.id}`} style={{height: "300px", margin: "10px"}} onClick={handleViewItem} >

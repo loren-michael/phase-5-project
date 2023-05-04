@@ -8,6 +8,11 @@ class CartsController < ApplicationController
     render json: @carts
   end
 
+  def user_carts
+    carts = @current_user.carts
+    render json: carts
+  end
+
   # GET /carts/1
   def show
     render json: @cart
@@ -43,6 +48,10 @@ class CartsController < ApplicationController
     def set_cart
       @cart = Cart.find(params[:id])
     end
+
+    # def user_carts
+    #   @carts = Cart.all.filter(cart => user_id === params[:user_id])
+    # end
 
     # Only allow a list of trusted parameters through.
     def cart_params

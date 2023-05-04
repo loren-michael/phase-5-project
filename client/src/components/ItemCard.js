@@ -1,3 +1,5 @@
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faUser } from '@fortawesome/free-solid-svg-icons';
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
@@ -12,6 +14,7 @@ const ItemCard = ({ item, setDetailedItem }) => {
     setDetailedItem(item)
     navigate(`/items/${item.id}`)
   }
+  console.log(item)
 
   return (
       <a class="card" href={`/items/${item.id}`} style={{height: "300px", margin: "10px"}} onClick={handleViewItem} >
@@ -26,6 +29,12 @@ const ItemCard = ({ item, setDetailedItem }) => {
               id="item-card-image"
             />
           </div>
+          <span class="">
+            <FontAwesomeIcon icon={faUser} style={{color: "#8c8c8c",}} /> {item.user_id}
+          </span>
+          <span>
+
+          </span>
         </div>
         <button class="ui button" onClick={handleViewItem}>View Item</button>
       </a>

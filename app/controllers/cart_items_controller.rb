@@ -15,29 +15,33 @@ class CartItemsController < ApplicationController
 
   # POST /cart_items
   def create
-    active_cart = @current_user.carts.filter { |cart| cart.active = true }
-    if active_cart
-      render json: active_cart, status: 200
+    item = Item.find_by_id(cart_item_params[:item_id])
+    cart = Cart.find_by_id(cart_item_params[:cart_id])
+    cart_item = cart.add_item(item, cart_item_params[:qty])
+    if cart_item.valid?
+      render json: cart_item, status: 201
     else
-      render json: Cart.create, status: 201
+      render json: { errors: [cart_item.errors.full_messages] }, status: 422
     end
-
-    # @cart_item = CartItem.new(cart_item_params)
-
-    # if @cart_item.save
-    #   render json: @cart_item, status: :created, location: @cart_item
-    # else
-    #   render json: @cart_item.errors, status: :unprocessable_entity
-    # end
   end
 
   # PATCH/PUT /cart_items/1
+  # def update
+  #   if @cart_item.update(cart_item_params)
+  #     render json: @cart_item
+  #   else
+  #     render json: @cart_item.errors, status: :unprocessable_entity
+  #   end
+  # end
+
+  # PATCH /cart_items/1
   def update
-    if @cart_item.update(cart_item_params)
-      render json: @cart_item
+    if cart_item_params[:qty] == 0
+      @cart_item.destroy
     else
-      render json: @cart_item.errors, status: :unprocessable_entity
+      @cart_item.update(cart_item_params)
     end
+    render json: @cart_item, status: 200
   end
 
   # DELETE /cart_items/1
@@ -53,6 +57,6 @@ class CartItemsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def cart_item_params
-      params.permit(:cart_id, :item_id)
+      params.permit(:cart_id, :item_id, :qty)
     end
 end

@@ -8,4 +8,5 @@ class User < ApplicationRecord
   has_many :favorites
   has_many :item_reviews
   has_many :orders
+  has_many :cart_items, through: :carts
 end

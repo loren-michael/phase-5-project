@@ -169,7 +169,7 @@ i11 = Item.create(
   title: "Drum Key",
   image: "https://media.sweetwater.com/api/i/q-82__f-webp__ha-6a199aa62d3cbcf9__hmac-389af734fcb6228bc97d14bb2c0dc4e1053bdc06/images/items/750/P41-large.jpg.auto.webp",
   description: "Standard Ludwig drum key, a must have for your workbox",
-  qty: 1,
+  qty: 15,
   category: "Accessories",
   condition: "New",
   make: "Ludwig",
@@ -192,8 +192,10 @@ i12 = Item.create(
 
 puts "Filling Carts"
 
-ci1 = CartItem.create(cart_id: c1.id, item_id: i5.id)
-ci2 = CartItem.create(cart_id: c1.id, item_id: i12.id)
+# ci1 = CartItem.create(cart_id: c1.id, item_id: i5.id)
+# ci2 = CartItem.create(cart_id: c1.id, item_id: i12.id)
+c1.add_item(i11, 12)
+c1.add_item(i12, 1)
 
 
 puts "Basic Store Seeding Complete"

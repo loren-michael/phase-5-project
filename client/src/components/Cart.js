@@ -15,6 +15,30 @@ const Cart = () => {
     dispatch(loadCarts())
   }, [])
 
+  function handleSaveCart () {
+    console.log("save cart")
+    // 1. make active cart inactive
+    // 2. create new cart (always have an active cart, no matter what)
+  }
+
+  function handleActivateCart () {
+    console.log("activate cart")
+    // 1. make currently active cart inactive
+    // 2. make selected cart active
+  }
+
+  function handleEmptyCart () {
+    console.log("empty cart")
+    // destroy this cart's associated cart items
+  }
+
+  function handleCheckOut () {
+    console.log("check out")
+    // 1. post this cart to "orders"
+    // 2. delete the cart
+    // 3. create a new active cart for the use (always have an active cart, no matter what)
+  }
+
 
   return (
     <div>
@@ -46,13 +70,24 @@ const Cart = () => {
               </div>
               <div class="relative h-32 w-32">
                 <div class="">
-                  <button class=" inset-0 bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow">Check Out</button>
+                  
+                  {
+                    cart.active ?
+                    <button onClick={handleSaveCart} class="inset-0 bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow">Save Cart</button>
+                    :
+                    <button onClick={handleActivateCart} class=" inset-0 bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow">Check Out</button>
+                  }
+
+                  <button onClick={handleEmptyCart} class="inset-0 bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow">Empty Cart</button>
+                  <button onClick={handleCheckOut} class="inset-0 bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow">Check Out</button>
                 </div>
               </div>
             </div>
           )
         })}
       </div>
+      <h3 class="pl-20">Completed Orders:</h3>
+
     </div>
   )
 }

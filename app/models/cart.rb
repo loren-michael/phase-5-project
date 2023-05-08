@@ -7,8 +7,5 @@ class Cart < ApplicationRecord
     self.cart_items.create(item: item, qty: qty, price: item.price)
   end
 
-  def total_cart_cost
-    byebug
-  end
 
 end

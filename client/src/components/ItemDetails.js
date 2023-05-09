@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import NavBar from './NavBar';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import { loadItem } from '../actions/items';
 import { addItemToCart } from '../actions/carts';
 
 
 const ItemDetails = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const params = useParams();
   const itemId = params.id;
   // const store = useSelector(store => store)
@@ -28,8 +29,8 @@ const ItemDetails = () => {
   }, [])
 
   function handleAddCart() {
-    console.log(displayItem)
     dispatch(addItemToCart(displayItem.id))
+    navigate("/cart")
   }
 
 // console.log(displayItem)

@@ -8,7 +8,7 @@ import { faCartShopping } from '@fortawesome/free-solid-svg-icons'
 const Cart = () => {
   const dispatch = useDispatch()
   const carts = useSelector(store => store.carts)
-
+  console.log(carts)
 
 
   useEffect(() => {
@@ -55,29 +55,32 @@ const Cart = () => {
                     <div class="m-8"><FontAwesomeIcon icon={faCartShopping} size="2xl" style={{color: "#ff0000",}} /></div>
                   }
               </div>
-              <div class="pl-6 w-2/4">Items:
+              <div class="pl-6 w-2/4 font-sans">
+              <br></br>
                 {cart.items.map(item => {
                   return (
-                    <div class="flex flex-wrap">
-                      <li>{item.title.substring(0,20)}</li>
+                    <div class="flex flex-wrap" key={item.id}>
+                      <p>{item.title.substring(0,20)}</p>
                       <div class="pl-12"> ${item.price}</div>
                     </div>
                   )
                 })}
+                <br></br>
+                <p class="font-sans font-semibold text-xl">TOTAL:  ${cart.cart_price}</p>
+                <br></br>
               </div>
               <div>
                 {cart.cart_total}
               </div>
               <div class="relative h-32 w-32">
                 <div class="">
-                  
+                  <br></br>
                   {
                     cart.active ?
                     <button onClick={handleSaveCart} class="inset-0 bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow">Save Cart</button>
                     :
                     <button onClick={handleActivateCart} class=" inset-0 bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow">Load Cart</button>
                   }
-
                   <button onClick={handleEmptyCart} class="inset-0 bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow">Empty Cart</button>
                   <button onClick={handleCheckOut} class="inset-0 bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow">Check Out</button>
                 </div>

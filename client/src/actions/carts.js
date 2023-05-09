@@ -3,17 +3,6 @@ const headers = {
   "Accept": "application/json"
 };
 
-export const addItemToCart = item => {
-  return (dispatch)  => {
-    fetch("/active_cart", {
-      method: "POST",
-      headers: headers,
-      body: JSON.stringify(item)
-    })
-    .then(r => r.json())
-    .then(item => dispatch({ type: "ADD_ITEM", payload: item }))
-  }
-}
 
 export const loadCarts = () => {
   return (dispatch) => {
@@ -23,10 +12,49 @@ export const loadCarts = () => {
   }
 }
 
-export const loadItems = () => {
+export const createCart = () => {
   return (dispatch) => {
-    fetch("/items")
+    fetch('/carts', {
+      method: "POST",
+      headers: headers
+    })
     .then(r => r.json())
-    .then(data => dispatch({type: "LOAD_ITEMS", payload: data}))
+    .then(cart => dispatch({type: "CREATE_CART", payload: cart}))
+  }
+}
+
+export const addItemToCart = id => {
+  return (dispatch)  => {
+    fetch("/cart_items", {
+      method: "POST",
+      headers: headers,
+      body: JSON.stringify({id: id})
+    })
+    .then(r => r.json())
+    .then(item => dispatch({ type: "ADD_ITEM", payload: item }))
+  }
+}
+
+export const deactivateCart = (id) => {
+  return (dispatch) => {
+    fetch('/carts' + id, {
+      method: "PATCH",
+      headers: headers,
+      body: JSON.stringify({ active: false })
+    })
+    .then(r => r.json())
+    .then(cart => dispatch({type: "DEACTIVATE_CART", payload: cart}))
+  }
+}
+
+export const activateCart = (id) => {
+  return (dispatch) => {
+    fetch('/carts' + id, {
+      method: "PATCH",
+      headers: headers,
+      body: JSON.stringify({ active: true })
+    })
+    .then(r => r.json())
+    .then(cart => dispatch({type: "ACTIVATE_CART", payload: cart}))
   }
 }

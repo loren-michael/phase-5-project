@@ -29,7 +29,7 @@ const ItemDetails = () => {
 
   function handleAddCart() {
     console.log(displayItem)
-    dispatch(addItemToCart(displayItem))
+    dispatch(addItemToCart(displayItem.id))
   }
 
 // console.log(displayItem)

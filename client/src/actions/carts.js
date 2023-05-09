@@ -6,7 +6,7 @@ const headers = {
 
 export const loadCarts = () => {
   return (dispatch) => {
-    fetch('/user_carts')
+    fetch('/carts')
     .then(r => r.json())
     .then(carts => dispatch({type: "LOAD_CARTS", payload: carts}))
   }

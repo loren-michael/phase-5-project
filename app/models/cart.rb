@@ -7,5 +7,12 @@ class Cart < ApplicationRecord
     self.cart_items.create(item: item, qty: qty, price: item.price)
   end
 
+  def cart_price
+    sum = 0.0
+    self.object.cart_items.each do |item|
+      sum += item.total_item_cost
+    end
+    sum
+  end
 
 end

@@ -3,12 +3,6 @@ class CartsController < ApplicationController
 
   # GET /carts
   def index
-    @carts = Cart.all
-
-    render json: @carts
-  end
-
-  def user_carts
     carts = @current_user.carts
     render json: carts
   end

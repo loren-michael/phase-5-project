@@ -1,11 +1,12 @@
 class CartItemsController < ApplicationController
   before_action :set_cart_item, only: [:show, :update, :destroy]
+  before_action :authorize
 
   # GET /cart_items
   def index
-    @cart_items = CartItem.all
-
-    render json: @cart_items
+    items = @current_user.cart_items
+    # byebug
+    render json: items
   end
 
   # GET /cart_items/1

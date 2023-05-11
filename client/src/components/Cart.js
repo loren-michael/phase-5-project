@@ -11,7 +11,7 @@ const Cart = () => {
   const cartItems = useSelector(store => store.cartItems)
   const carts = useSelector(store => store.carts);
   const orders = useSelector(store => store.orders);
-  console.log(cartItems)
+  console.log(carts)
 
 
   useEffect(() => {

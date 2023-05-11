@@ -6,7 +6,7 @@ class CartItemsController < ApplicationController
   def index
     items = @current_user.cart_items
     # byebug
-    render json: items
+    render json: items, include: :item
   end
 
   # GET /cart_items/1

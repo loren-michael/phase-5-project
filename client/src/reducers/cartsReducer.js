@@ -22,7 +22,13 @@ const itemsReducer = (state=initialState, action) => {
     case "EMPTY_CART":
       return {
         ...state,
-        carts: []
+        carts: state.carts.map(cart => {
+          if (cart.id === action.payload.id) {
+            return action.payload
+          } else {
+            return cart
+          }
+        })
       }
     default:
       return state;

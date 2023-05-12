@@ -12,10 +12,6 @@ class CartsController < ApplicationController
     render json: active_cart
   end
 
-  def add_to_active_cart
-    
-  end
-
   # GET /carts/1
   def show
     render json: @cart
@@ -23,12 +19,12 @@ class CartsController < ApplicationController
 
   # POST /carts
   def create
-    @cart = Cart.new(cart_params)
+    @cart = @current_user.cart.new(cart_params)
 
     if @cart.save
       render json: @cart, status: :created, location: @cart
     else
-      render json: @cart.errors, status: :unprocessable_entity
+      render json: @cart.errors, status: 422
     end
   end
 
@@ -37,8 +33,26 @@ class CartsController < ApplicationController
     if @cart.update(cart_params)
       render json: @cart
     else
-      render json: @cart.errors, status: :unprocessable_entity
+      render json: @cart.errors, status: 422
     end
+  end
+
+  # PATCH /carts/1
+  def activate_cart
+    deactivate_carts
+    if @cart.update(active: true)
+      render json: @cart
+    else
+      render json: @cart.errors, status: 422
+    end
+  end
+
+  # PATCH /empty_cart/1
+  def empty_cart
+    cart = Cart.find(params[:id])
+    items = cart.cart_items
+    items.destroy(items)
+    render json: cart, status: 200
   end
 
   # DELETE /carts/1
@@ -52,12 +66,15 @@ class CartsController < ApplicationController
       @cart = Cart.find(params[:id])
     end
 
-    # def user_carts
-    #   @carts = Cart.all.filter(cart => user_id === params[:user_id])
-    # end
-
     # Only allow a list of trusted parameters through.
     def cart_params
       params.permit(:user_id, :active)
+    end
+
+    # Deactivate all of current user's carts so that one can be activated.
+    def deactivate_carts
+      @current_user.carts.each do |cart|
+        cart.active = false
+      end
     end
 end

@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import NavBar from './NavBar';
 import { useDispatch, useSelector } from 'react-redux';
-import { loadCarts } from '../actions/carts';
+import { activateCart, emptyCart, loadCarts } from '../actions/carts';
 import { deleteCartItem, loadCartItems } from '../actions/cartItems';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCartShopping } from '@fortawesome/free-solid-svg-icons';
@@ -25,24 +25,19 @@ const Cart = () => {
     dispatch(loadCarts())
   }
 
-
   function handleSaveCart (e) {
-    console.log("save cart")
-    console.log(e.target.id)
     dispatch(deactivateCart(e.target.id))
-    dispatch(createCart())
     dispatch(loadCarts())
   }
 
-  function handleActivateCart () {
-    console.log("activate cart")
-    // 1. make currently active cart inactive
-    // 2. make selected cart active
+  function handleActivateCart (e) {
+    dispatch(activateCart(e.target.id))
+    dispatch(loadCarts())
   }
 
-  function handleEmptyCart () {
-    console.log("empty cart")
-    // destroy this cart's associated cart items
+  function handleEmptyCart (e) {
+    // console.log("empty cart")
+    dispatch(emptyCart(e.target.id))
   }
 
   function handleCheckOut () {

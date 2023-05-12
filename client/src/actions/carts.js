@@ -16,7 +16,10 @@ export const createCart = () => {
   return (dispatch) => {
     fetch('/carts', {
       method: "POST",
-      headers: headers
+      headers: headers,
+      body: JSON.stringify({
+        active: true
+      })
     })
     .then(r => r.json())
     .then(cart => dispatch({type: "CREATE_CART", payload: cart}))
@@ -56,5 +59,16 @@ export const activateCart = (id) => {
     })
     .then(r => r.json())
     .then(cart => dispatch({type: "ACTIVATE_CART", payload: cart}))
+  }
+}
+
+export const emptyCart = (id) => {
+  return (dispatch) => {
+    fetch('/empty_cart/' + id, {
+      method: "PATCH",
+      headers: headers
+    })
+    .then(r => r.json())
+    .then(cart => dispatch({type: "EMPTY_CART", payload: cart}))
   }
 }

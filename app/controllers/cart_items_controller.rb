@@ -18,7 +18,12 @@ class CartItemsController < ApplicationController
   def create
     find_active_cart
     item = Item.find_by_id(params[:id])
-    cart_item = CartItem.create!(cart_id: @active_cart.id, qty: 1, item_id: item.id, price: item.price)
+    if !@active_cart
+      newCart = @current_user.carts.create!({ user_id: @current_user.id, active: true })
+      cart_item = CartItem.create!(cart_id: newCart.id, qty: 1, item_id: item.id, price: item.price)
+    else
+      cart_item = CartItem.create!(cart_id: @active_cart.id, qty: 1, item_id: item.id, price: item.price)
+    end
     render json: cart_item, status: 201
   end
 

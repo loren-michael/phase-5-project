@@ -11,20 +11,15 @@ const ItemDetails = () => {
   const navigate = useNavigate();
   const params = useParams();
   const itemId = params.id;
-  // const store = useSelector(store => store)
-  const items = useSelector(store => store.items);
   const displayItem = useSelector(store => store.items.displayItem)
   const [loading, setLoading] = useState(true)
-  // const [displayItem, setDisplayItem] = useState({})
   const loggedIn = useSelector(store => store.sessions.loggedIn)
-  // console.log(loggedIn)
 
-  
+
   useEffect(() => {
     dispatch(loadItem(itemId))
     if (displayItem) {
       setLoading(false)
-      // console.log(displayItem)
     }
   }, [])
 
@@ -33,7 +28,7 @@ const ItemDetails = () => {
     navigate("/cart")
   }
 
-// console.log(displayItem)
+
   return (
     <div>
       <NavBar />
@@ -57,14 +52,13 @@ const ItemDetails = () => {
               {displayItem.description}
               <br></br>
               <br></br>
-              {/* Seller: {displayItem.user.username} */}
               <br></br>
               <br></br>
               ${displayItem.price}
             </div>
             <div>
               { loggedIn ?
-                <button onClick={handleAddCart} class="bg-transparent hover:bg-black text-black font-semibold hover:text-white py-2 px-4 border border-black hover:border-transparent rounded">Add To Cart</button>
+                <button onClick={() => handleAddCart()} class="bg-transparent hover:bg-black text-black font-semibold hover:text-white py-2 px-4 border border-black hover:border-transparent rounded">Add To Cart</button>
                 :
                 <Link href="/login" to="/login" class="font-sans bg-black font-semibold hover:text-white py-2 px-4 border border-black rounded">Log in to purchase</Link>
               }

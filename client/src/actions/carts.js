@@ -37,7 +37,7 @@ export const addItemToCart = id => {
 
 export const deactivateCart = (id) => {
   return (dispatch) => {
-    fetch('/carts' + id, {
+    fetch('/carts/' + id, {
       method: "PATCH",
       headers: headers,
       body: JSON.stringify({ active: false })
@@ -49,7 +49,7 @@ export const deactivateCart = (id) => {
 
 export const activateCart = (id) => {
   return (dispatch) => {
-    fetch('/carts' + id, {
+    fetch('/carts/' + id, {
       method: "PATCH",
       headers: headers,
       body: JSON.stringify({ active: true })

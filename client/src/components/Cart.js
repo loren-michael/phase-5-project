@@ -5,6 +5,8 @@ import { loadCarts } from '../actions/carts';
 import { deleteCartItem, loadCartItems } from '../actions/cartItems';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCartShopping } from '@fortawesome/free-solid-svg-icons';
+import { deactivateCart } from '../actions/carts';
+import { createCart } from '../actions/carts';
 
 const Cart = () => {
   const dispatch = useDispatch();
@@ -24,10 +26,12 @@ const Cart = () => {
   }
 
 
-  function handleSaveCart () {
+  function handleSaveCart (e) {
     console.log("save cart")
-    // 1. make active cart inactive
-    // 2. create new cart (always have an active cart, no matter what)
+    console.log(e.target.id)
+    dispatch(deactivateCart(e.target.id))
+    dispatch(createCart())
+    dispatch(loadCarts())
   }
 
   function handleActivateCart () {
@@ -87,12 +91,14 @@ const Cart = () => {
                   <br></br>
                   {
                     cart.active ?
-                    <button onClick={handleSaveCart} class="inset-0 bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow">Save Cart</button>
+                    <div>
+                      <button id={cart.id} onClick={(e) => handleSaveCart(e)} class="inset-0 bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow">Save Cart</button>
+                      <button id={cart.id} onClick={(e) => handleEmptyCart(e)} class="inset-0 bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow">Empty Cart</button>
+                      <button id={cart.id} onClick={(e) => handleCheckOut(e)} class="inset-0 bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow">Check Out</button>
+                    </div>
                     :
-                    <button onClick={handleActivateCart} class=" inset-0 bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow">Load Cart</button>
+                    <button id={cart.id} onClick={(e) => handleActivateCart(e)} class=" inset-0 bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow">Load Cart</button>
                   }
-                  <button onClick={handleEmptyCart} class="inset-0 bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow">Empty Cart</button>
-                  <button onClick={handleCheckOut} class="inset-0 bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow">Check Out</button>
                 </div>
               </div>
             </div>

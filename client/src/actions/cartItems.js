@@ -26,7 +26,7 @@ export const createCartItem = (cartItem) => {
 
 export const editCartItem = (id) => {
   return (dispatch) => {
-    fetch('/cart_items' + id, {
+    fetch('/cart_items/' + id, {
       method: "PATCH",
       headers: headers,
       body: JSON.stringify({})
@@ -38,8 +38,9 @@ export const editCartItem = (id) => {
 
 export const deleteCartItem = (id) => {
   return (dispatch) => {
-    fetch('/cart_items' + id, {
-      method: "DELETE"
+    fetch('/cart_items/' + id, {
+      method: "DELETE",
+      headers: headers
     })
     .then(r => r.json())
     .then(cartItem => dispatch({type: "DELETE_CART_ITEM", payload: cartItem}))

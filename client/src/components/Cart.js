@@ -2,13 +2,13 @@ import React, { useEffect } from 'react';
 import NavBar from './NavBar';
 import { useDispatch, useSelector } from 'react-redux';
 import { loadCarts } from '../actions/carts';
-import { loadCartItems } from '../actions/cartItems';
+import { deleteCartItem, loadCartItems } from '../actions/cartItems';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCartShopping } from '@fortawesome/free-solid-svg-icons';
 
 const Cart = () => {
   const dispatch = useDispatch();
-  const cartItems = useSelector(store => store.cartItems)
+  // const cartItems = useSelector(store => store.cartItems)
   const carts = useSelector(store => store.carts);
   const orders = useSelector(store => store.orders);
   console.log(carts)
@@ -16,7 +16,12 @@ const Cart = () => {
 
   useEffect(() => {
     dispatch(loadCarts())
-  }, [])
+  }, [dispatch])
+
+  function handleRemoveItem (e) {
+    dispatch(deleteCartItem(e.target.id))
+    dispatch(loadCarts())
+  }
 
 
   function handleSaveCart () {
@@ -60,11 +65,11 @@ const Cart = () => {
                   }
               </div>
               <div class="w-fit font-sans">
-              {/* <br></br> */}
                 {cart.items.map(item => {
+                  const cartItemId = cart.cart_items.filter(ci => ci.item_id === item.id)
                   return (
                     <div class="flex flex-wrap" key={item.id}>
-                      <button class="inset-0 bg-white hover:bg-gray-100 text-gray-800 font-semibold py-1 px-2 border border-gray-400 rounded shadow">Remove</button>
+                      <button id={cartItemId[0].id} onClick={(e) => handleRemoveItem(e)} class="inset-0 bg-white hover:bg-gray-100 text-gray-800 font-semibold py-1 px-2 border border-gray-400 rounded shadow">Remove</button>
                       <p class="pl-5 align-middle">{item.title.substring(0,25)}</p>
                       <div class="pl-12"> ${item.price}</div>
                     </div>

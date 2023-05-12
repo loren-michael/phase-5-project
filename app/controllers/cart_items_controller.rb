@@ -17,30 +17,11 @@ class CartItemsController < ApplicationController
   # POST /cart_items
   def create
     find_active_cart
-    cart_item = CartItem.create!(cart_id: @active_cart.id, qty: 1, item_id: params[:id])
+    item = Item.find_by_id(params[:id])
+    cart_item = CartItem.create!(cart_id: @active_cart.id, qty: 1, item_id: item.id, price: item.price)
     render json: cart_item, status: 201
   end
 
-
-#   def create
-#     find_active_cart
-#     item = Item.find_by_id(cart_item_params[:id])
-# # byebug
-#     if !@active_cart
-#       @active_cart = @current_user.carts.create({ active: true })
-#     else 
-#       cart_item = @active_cart.add_item(item, cart_item_params[:qty])
-#     end
-
-#     # cart_item = CartItem.create(user_id: @current_user.id, qty: cart_item_params[:qty], cart_id: @active_cart.id)
-# # byebug
-#     if cart_item.valid?
-#       render json: cart_item, status: 201
-#     else
-#       render json: { errors: [cart_item.errors.full_messages] }, status: 422
-#     end
-
-#   end
 
   # PATCH/PUT /cart_items/1
   # def update
@@ -64,6 +45,7 @@ class CartItemsController < ApplicationController
   # DELETE /cart_items/1
   def destroy
     @cart_item.destroy
+    render json: @cart_item
   end
 
   private

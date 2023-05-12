@@ -14,7 +14,7 @@ const itemsReducer = (state=initialState, action) => {
         ...state,
         cartItems: [...state.cartItems, action.payload]
       };
-    case "DELETE_ITEM":
+    case "DELETE_CART_ITEM":
       return {
         ...state,
         cartItems: state.cartItems.filter(item => item.id !== action.payload.id)

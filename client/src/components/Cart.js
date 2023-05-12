@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import NavBar from './NavBar';
 import { useDispatch, useSelector } from 'react-redux';
-// import { loadCarts } from '../actions/carts';
+import { loadCarts } from '../actions/carts';
 import { loadCartItems } from '../actions/cartItems';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCartShopping } from '@fortawesome/free-solid-svg-icons';
@@ -15,7 +15,7 @@ const Cart = () => {
 
 
   useEffect(() => {
-    dispatch(loadCartItems())
+    dispatch(loadCarts())
   }, [])
 
 

@@ -55,6 +55,7 @@ class CartsController < ApplicationController
   # DELETE /carts/1
   def destroy
     @cart.destroy
+    render json: @cart
   end
 
   private

@@ -58,6 +58,11 @@ const itemsReducer = (state=initialState, action) => {
           }
         })
       };
+    case "DELETE_CART":
+      return {
+        ...state,
+        carts: state.carts.filter(cart => cart.id !== action.payload.id)
+      }
     default:
       return state;
   }

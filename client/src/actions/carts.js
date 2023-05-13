@@ -72,3 +72,13 @@ export const emptyCart = (id) => {
     .then(cart => dispatch({type: "EMPTY_CART", payload: cart}))
   }
 }
+
+export const deleteCart = (id) => {
+  return (dispatch) => {
+    fetch('/carts/'+ id, {
+      method: "DELETE"
+      })
+    .then(r => r.json())
+    .then(cart => dispatch({type: "DELETE_CART", payload: cart}))
+  }
+}

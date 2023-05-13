@@ -10,7 +10,6 @@ import { createCart } from '../actions/carts';
 
 const Cart = () => {
   const dispatch = useDispatch();
-  // const cartItems = useSelector(store => store.cartItems)
   const carts = useSelector(store => store.carts);
   const orders = useSelector(store => store.orders);
   console.log(carts)
@@ -20,23 +19,26 @@ const Cart = () => {
     dispatch(loadCarts())
   }, [dispatch])
 
+  // function cartLoad() {
+  //   dispatch(loadCarts())
+  // }
+
   function handleRemoveItem (e) {
     dispatch(deleteCartItem(e.target.id))
-    dispatch(loadCarts())
+    // cartLoad()
   }
 
   function handleSaveCart (e) {
     dispatch(deactivateCart(e.target.id))
-    dispatch(loadCarts())
+    // cartLoad()
   }
 
   function handleActivateCart (e) {
     dispatch(activateCart(e.target.id))
-    dispatch(loadCarts())
+    // cartLoad()
   }
 
   function handleEmptyCart (e) {
-    // console.log("empty cart")
     dispatch(emptyCart(e.target.id))
   }
 
@@ -45,6 +47,10 @@ const Cart = () => {
     // 1. post this cart to "orders"
     // 2. delete the cart
     // 3. create a new active cart for the use (always have an active cart, no matter what)
+  }
+
+  function handleDeleteCart() {
+    
   }
 
 
@@ -98,7 +104,10 @@ const Cart = () => {
                       
                     </div>
                     :
-                    <button id={cart.id} onClick={(e) => handleActivateCart(e)} class=" inset-0 bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow">Load Cart</button>
+                    <div>
+                      <button id={cart.id} onClick={(e) => handleActivateCart(e)} class=" inset-0 bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow">Load Cart</button>
+                      <button id={cart.id} onClick={(e) => handleDeleteCart(e)} class=" inset-0 bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow">Delete Cart</button>
+                    </div>
                   }
                 </div>
               </div>

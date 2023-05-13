@@ -40,11 +40,8 @@ class CartsController < ApplicationController
   # PATCH /carts/1
   def activate_cart
     deactivate_carts
-    if @cart.update(active: true)
-      render json: @cart
-    else
-      render json: @cart.errors, status: 422
-    end
+    @cart.update(active: true)
+    render json: @cart
   end
 
   # PATCH /empty_cart/1
@@ -74,7 +71,8 @@ class CartsController < ApplicationController
     # Deactivate all of current user's carts so that one can be activated.
     def deactivate_carts
       @current_user.carts.each do |cart|
-        cart.active = false
+        cart.update(active: false)
+        puts cart
       end
     end
 end

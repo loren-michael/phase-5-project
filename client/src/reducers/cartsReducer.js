@@ -1,6 +1,6 @@
 const initialState = {
   carts: [],
-}
+};
 
 const itemsReducer = (state=initialState, action) => {
   switch(action.type) {
@@ -13,7 +13,7 @@ const itemsReducer = (state=initialState, action) => {
       return {
         ...state,
         carts: [...state, action.payload]
-      }
+      };
     case "ADD_ITEM":
       return {
         ...state,
@@ -34,19 +34,30 @@ const itemsReducer = (state=initialState, action) => {
             return cart
           }
         })
-      }
-      case "ACTIVATE_CART":
-        return {
-          ...state,
-          carts: state.carts.map(cart => {
-            if (cart.id !== action.payload.id) {
-              cart.active = false
-              return cart
-            } else {
-              return action.payload
-            }
-          })
-        }
+      };
+    case "ACTIVATE_CART":
+      return {
+        ...state,
+        carts: state.carts.map(cart => {
+          if (cart.id !== action.payload.id) {
+            cart.active = false
+            return cart
+          } else {
+            return action.payload
+          }
+        })
+      };
+    case "DEACTIVATE_CART":
+      return {
+        ...state,
+        carts: state.carts.map(cart => {
+          if (cart.id !== action.payload.id) {
+            return cart
+          } else {
+            return action.payload
+          }
+        })
+      };
     default:
       return state;
   }

@@ -11,6 +11,9 @@ import { createCart } from '../actions/carts';
 const Cart = () => {
   const dispatch = useDispatch();
   const carts = useSelector(store => store.carts);
+  console.log(carts)
+  const activeFirst = carts.carts.sort((a, b) => b.active - a.active)
+  console.log(activeFirst)
   const orders = useSelector(store => store.orders);
   console.log(carts)
 
@@ -53,7 +56,7 @@ const Cart = () => {
       <NavBar />
       <div>
         <h3 class="pl-20">Your Carts:</h3>
-        {carts.carts.map(cart => {
+        {activeFirst.map(cart => {
           return (
             <div key={cart.id} class="p-3 mb-3  w-9/12 m-auto bg-slate-200 rounded border-2 border-black columns-auto">
               <div class="w-15">

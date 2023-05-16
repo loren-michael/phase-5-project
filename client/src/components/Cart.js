@@ -35,8 +35,9 @@ const Cart = () => {
     dispatch(emptyCart(e.target.id))
   }
 
-  function handleCheckOut () {
+  function handleCheckOut (e) {
     console.log("check out")
+    console.log(e.target.id)
     // 1. post this cart to "orders"
     // 2. delete the cart
     // 3. create a new active cart for the use (always have an active cart, no matter what)

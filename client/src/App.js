@@ -8,13 +8,13 @@ import Cart from './components/Cart';
 import ItemsContainer from './components/ItemsContainer';
 import ItemDetails from './components/ItemDetails';
 import Profile from './components/Profile';
-import NavBar from './components/NavBar'
 import SignUp from './components/SignUp';
 import Login from './components/Login';
 import { useDispatch } from 'react-redux';
-import { createSession, loadSession } from './actions/sessions';
+import { loadSession } from './actions/sessions';
 import 'semantic-ui-css/semantic.min.css';
 import { loadItems } from './actions/items';
+import CheckOut from './components/CheckOut';
 
 
 function App() {
@@ -23,16 +23,8 @@ function App() {
   useEffect(() => {
     dispatch(loadItems())
     dispatch(loadSession())
-    // fetch('/me').then(r => {
-    //   if (r.ok) {
-    //     r.json().then(user => dispatch(createSession(user)))
-    //   }
-    // })
   }, [])
-  
-  // useEffect(() => {
 
-  // }, [])
 
   useEffect(() => {
     
@@ -42,7 +34,6 @@ function App() {
   return (
     <BrowserRouter>
       <div id="background-color">
-        {/* <NavBar /> */}
         <Routes>
           <Route exact path="/" element={ <Home /> }/>
           <Route path="/signup" element={ <SignUp /> } />
@@ -53,6 +44,7 @@ function App() {
           <Route path="/items" element={ <ItemsContainer /> } />
           <Route path="/items/:id" element={ <ItemDetails /> } />
           <Route path="/user" element={ <Profile /> } />
+          <Route path="/checkout/:id" element={ <CheckOut /> } />
         </Routes>
       </div>
     </BrowserRouter>

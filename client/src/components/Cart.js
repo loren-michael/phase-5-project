@@ -2,20 +2,18 @@ import React, { useEffect } from 'react';
 import NavBar from './NavBar';
 import { useDispatch, useSelector } from 'react-redux';
 import { activateCart, deleteCart, emptyCart, loadCarts } from '../actions/carts';
-import { deleteCartItem, loadCartItems } from '../actions/cartItems';
+import { deleteCartItem } from '../actions/cartItems';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCartShopping } from '@fortawesome/free-solid-svg-icons';
 import { deactivateCart } from '../actions/carts';
-import { createCart } from '../actions/carts';
+import { useNavigate } from 'react-router-dom';
 
 const Cart = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const carts = useSelector(store => store.carts);
-  console.log(carts)
   const activeFirst = carts.carts.sort((a, b) => b.active - a.active)
-  console.log(activeFirst)
   const orders = useSelector(store => store.orders);
-  console.log(carts)
 
 
   useEffect(() => {
@@ -39,11 +37,7 @@ const Cart = () => {
   }
 
   function handleCheckOut (e) {
-    console.log("check out")
-    console.log(e.target.id)
-    // 1. post this cart to "orders"
-    // 2. delete the cart
-    // 3. create a new active cart for the use (always have an active cart, no matter what)
+    navigate(`/checkout/${e.target.id}`)
   }
 
   function handleDeleteCart(e) {
@@ -112,10 +106,19 @@ const Cart = () => {
           )
         })}
       </div>
-      <h3 class="pl-20">Completed Orders:</h3>
+        {
+          orders ? 
+          <div>
+            <h3 class="pl-20">Completed Orders:</h3>
+          </div>
+          :
+          <div></div>
+        }
+
+      {/* 
         {
 
-        }
+        } */}
     </div>
   )
 }

@@ -15,13 +15,14 @@ class OrdersController < ApplicationController
 
   # POST /orders
   def create
-    @order = Order.new(order_params)
-
-    if @order.save
-      render json: @order, status: :created, location: @order
-    else
-      render json: @order.errors, status: :unprocessable_entity
-    end
+    # @order = Order.create!(user_id: params[:user_id], cart_id: params[:id])
+    order = @current_user.orders.create!(cart_id: params[:cart_id])
+    render json: order, status: :created
+    # if @order.save
+    #   render json: @order, status: :created, location: @order
+    # else
+    #   render json: @order.errors, status: :unprocessable_entity
+    # end
   end
 
   # PATCH/PUT /orders/1
@@ -46,6 +47,6 @@ class OrdersController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def order_params
-      params.require(:order).permit(:user_id_id, :cart_id_id)
+      params.permit(:user_id, :id, :cart_id)
     end
 end

@@ -5,12 +5,6 @@ const headers = {
 
 export const createOrder = (cart) => {
   return (dispatch) => {
-    fetch('/orders', {
-      method: "POST",
-      headers: headers,
-      body: JSON.stringify({ cart })
-    })
-    .then(r => r.json())
-    .then(order => dispatch({type: "CREATE_ORDER", payload: order}))
+    dispatch({type: "CREATE_ORDER", payload: cart})
   }
 }

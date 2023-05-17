@@ -82,3 +82,9 @@ export const deleteCart = (id) => {
     .then(cart => dispatch({type: "DELETE_CART", payload: cart}))
   }
 }
+
+export const updateCart = (cart) => {
+  return (dispatch) => {
+    dispatch({type: "UPDATE_CART", payload: cart})
+  }
+}

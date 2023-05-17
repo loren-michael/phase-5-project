@@ -5,6 +5,7 @@ import { faCartShopping } from '@fortawesome/free-solid-svg-icons';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
 import { createOrder } from '../actions/orders';
+import { updateCart } from '../actions/carts';
 
 const CheckOut = () => {
   const dispatch = useDispatch();
@@ -29,12 +30,17 @@ const CheckOut = () => {
     .then(r => {
       if (r.ok) {
         r.json().then(dispatch(createOrder(checkOutCart)))
-        // .then(fetch("/carts/" + checkOutCart.id, {
-        //     method: "DELETE"
-        //   })
-        //   .then(r => r.json())
-        //   .then(cart => dispatch({type: "DELETE_CART", payload: cart}))
-        // )
+        .then(fetch("/carts/" + checkOutCart.id, {
+            method: "PATCH",
+            headers: {
+              "accept": "application/json",
+              "content-type": "application/json"
+            },
+            body: JSON.stringify({purchased: true, active: false})
+          })
+          .then(r => r.json())
+          .then(cart => dispatch(updateCart(cart)))
+        )
         .then(navigate('/cart'))
       } else {
         r.json().then(data => setErrors(data.errors))

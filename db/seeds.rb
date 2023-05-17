@@ -34,10 +34,10 @@ u10 = User.create(username: "user10", first_name: "User", last_name: "Ten", emai
 
 puts "Building Carts"
 
-c1 = Cart.create(user_id: 1, active: true)
-c2 = Cart.create(user_id: 2, active: true)
-c3 = Cart.create(user_id: 3, active: true)
-c4 = Cart.create(user_id: 4, active: true)
+c1 = Cart.create(user_id: 1, active: true, purchased: false)
+c2 = Cart.create(user_id: 2, active: true, purchased: false)
+c3 = Cart.create(user_id: 3, active: true, purchased: false)
+c4 = Cart.create(user_id: 4, active: true, purchased: false)
 
 
 

@@ -66,7 +66,7 @@ class CartsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def cart_params
-      params.permit(:user_id, :active)
+      params.permit(:user_id, :active, :purchased)
     end
 
     # Deactivate all of current user's carts so that one can be activated.

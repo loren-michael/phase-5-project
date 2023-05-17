@@ -1,26 +1,20 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import NavBar from './NavBar';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCartShopping } from '@fortawesome/free-solid-svg-icons';
 import { useDispatch, useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { createOrder } from '../actions/orders';
-import { loadCarts } from '../actions/carts';
 
 const CheckOut = () => {
   const dispatch = useDispatch();
   const params = useParams();
-  const [loading, setLoading] = useState(false)
-  const [errors, setErrors] = useState([])
+  const navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
+  const [errors, setErrors] = useState([]);
   const carts = useSelector(store => store.carts);
   const checkOutCart = carts.carts.find(cart => cart.id == params.id);
-  console.log(checkOutCart)
 
-
-  // useEffect(() => {
-  //   loadCarts()
-  //   console.log(checkOutCart)
-  // }, [])
 
   function processCheckOut () {
     setLoading(true)
@@ -30,25 +24,23 @@ const CheckOut = () => {
         "accept": "application/json",
         "content-type": "application/json"
       },
-      body: JSON.stringify({orders: checkOutCart})
+      body: JSON.stringify({checkOutCart})
     })
     .then(r => {
       if (r.ok) {
         r.json().then(dispatch(createOrder(checkOutCart)))
-        .then(fetch("/carts" + checkOutCart.id, {
-            method: "DELETE"
-          })
-          .then(r => r.json())
-          .then(cart => dispatch({type: "DELETE_CART", payload: cart}))
-        )
+        // .then(fetch("/carts/" + checkOutCart.id, {
+        //     method: "DELETE"
+        //   })
+        //   .then(r => r.json())
+        //   .then(cart => dispatch({type: "DELETE_CART", payload: cart}))
+        // )
+        .then(navigate('/cart'))
       } else {
         r.json().then(data => setErrors(data.errors))
       }
     })
   }
-
-    // 1. post this cart to "orders"
-    // 2. delete the cart
 
 
   return (

@@ -15,9 +15,15 @@ class OrdersController < ApplicationController
 
   # POST /orders
   def create
-    # @order = Order.create!(user_id: params[:user_id], cart_id: params[:id])
-    order = @current_user.orders.create!(cart_id: params[:cart_id])
-    render json: order, status: :created
+    order = @current_user.orders.new(cart_id: params[:id])
+
+    if order.save
+      render json: order, status: :created
+    else
+      render json: { errors: [order.errors.full_messages] }
+    end
+    # order = @current_user.orders.create!(cart_id: params[:cart_id])
+    # render json: order, status: :created
     # if @order.save
     #   render json: @order, status: :created, location: @order
     # else

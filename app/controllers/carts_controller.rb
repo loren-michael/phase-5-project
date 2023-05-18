@@ -19,13 +19,17 @@ class CartsController < ApplicationController
 
   # POST /carts
   def create
-    @cart = @current_user.cart.new(cart_params)
+    @cart = @current_user.carts.create!(cart_params)
+    render json: @cart, status: :created
+    
+    
+    # @cart = @current_user.cart.new(active: true, purchased: false)
 
-    if @cart.save
-      render json: @cart, status: :created, location: @cart
-    else
-      render json: @cart.errors, status: 422
-    end
+    # if @cart.save
+    #   render json: @cart, status: :created, location: @cart
+    # else
+    #   render json: @cart.errors, status: 422
+    # end
   end
 
   # PATCH/PUT /carts/1
@@ -73,7 +77,7 @@ class CartsController < ApplicationController
     def deactivate_carts
       @current_user.carts.each do |cart|
         cart.update(active: false)
-        puts cart
+        # puts cart
       end
     end
 end

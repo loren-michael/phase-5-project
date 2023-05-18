@@ -25,7 +25,7 @@ const CheckOut = () => {
         "accept": "application/json",
         "content-type": "application/json"
       },
-      body: JSON.stringify({checkOutCart})
+      body: JSON.stringify(checkOutCart)
     })
     .then(r => {
       if (r.ok) {

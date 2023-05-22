@@ -15,6 +15,7 @@ import { loadSession } from './actions/sessions';
 import 'semantic-ui-css/semantic.min.css';
 import { loadItems } from './actions/items';
 import CheckOut from './components/CheckOut';
+import ItemForm from './components/ItemForm';
 
 
 function App() {
@@ -43,7 +44,8 @@ function App() {
           <Route path="/cart" element={ <Cart /> } />
           <Route path="/items" element={ <ItemsContainer /> } />
           <Route path="/items/:id" element={ <ItemDetails /> } />
-          <Route path="/user" element={ <Profile /> } />
+          <Route path="/profile" element={ <Profile /> } />
+          <Route path="/new_item" element={ <ItemForm /> } />
           <Route path="/checkout/:id" element={ <CheckOut /> } />
         </Routes>
       </div>

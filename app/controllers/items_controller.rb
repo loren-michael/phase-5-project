@@ -15,18 +15,11 @@ class ItemsController < ApplicationController
 
   # POST /items
   def create
-    # @item = Item.new(item_params)
-
-    # if @item.save
-    #   render json: @item, status: :created, location: @item
-    # else
-    #   render json: @item.errors, status: :unprocessable_entity
-    # end
     item = @current_user.items.create!(
       user_id: @current_user.id,
       title: params[:title],
       image: params[:image],
-      decsription: params[:description],
+      description: params[:description],
       qty: params[:qty],
       category: params[:category],
       condition: params[:condition],
@@ -34,6 +27,7 @@ class ItemsController < ApplicationController
       model: params[:model],
       price: params[:price]
     )
+    render json: item
   end
 
   # PATCH/PUT /items/1

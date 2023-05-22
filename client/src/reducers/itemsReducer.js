@@ -15,7 +15,7 @@ const itemsReducer = (state=initialState, action) => {
         ...state,
         displayItem: action.payload
       }
-    case "ADD_ITEM":
+    case "CREATE_ITEM":
       return {
         ...state,
         items: [...state.items, action.payload]

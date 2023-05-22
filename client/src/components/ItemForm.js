@@ -1,8 +1,13 @@
 import React, { useState, useRef } from 'react';
 import { addItem } from '../actions/items';
 import { useDispatch } from 'react-redux';
+import NavBar from './NavBar';
+import { useNavigate } from 'react-router-dom';
+
+
 
 const ItemForm = () => {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const errRef = useRef();
   const [errors, setErrors] = useState([]);
@@ -35,29 +40,16 @@ const ItemForm = () => {
 
   function handleSubmit(e) {
     e.preventDefault();
-        // post the new item to the db, and if successful add to state and then reset the form
-    fetch('/items', {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "Accept": "application/json"
-      },
-      body:JSON.stringify(item)
-    })
-    .then(r => {
-      if (r.ok) {
-        r.json().then(dispatch(addItem(item))).then(resetForm())
-      } else {
-        r.json().then(data => setErrors(data.errors))
-      }
-    })
+    dispatch(addItem(item))
+    resetForm()
+    navigate('/profile')
   }
 
-  console.log("err", errors)
+  // console.log("err", errors)
 
   return (
     <div>
-      
+      <NavBar />
       {errors.map(err => {
         return (
           <p className={errors ? "errmsg" : "offscreen"} aria-live="assertive">{err}</p>
@@ -140,7 +132,8 @@ const ItemForm = () => {
           value={ item.price }
           onChange={e => setItem({...item, price: e.target.value})}
         />
-        <button>Sell It!</button>
+        <br></br>
+        <button class=" bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow" type="submit" value="Log In">Sell It!</button>
       </form>
     </div>
   )

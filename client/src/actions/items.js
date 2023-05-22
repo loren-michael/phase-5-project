@@ -13,8 +13,7 @@ export const addItem = item => {
       body: JSON.stringify(item)
     })
     .then(r => r.json())
-    .then(item => dispatch({ type: "ADD_ITEM", payload: item }))
-    // .then(item => console.log(item))
+    .then(item => dispatch({ type: "CREATE_ITEM", payload: item }))
   }
 }
 

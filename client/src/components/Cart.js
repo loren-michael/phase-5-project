@@ -12,66 +12,16 @@ import { loadOrders } from '../actions/orders';
 const Cart = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  // const [sortedOrders, setSortedOrders] = useState([]);
-  // const [sortedCarts, setSortedCarts] = useState([]);
   const carts = useSelector(store => store.carts);
-  const orders = useSelector(store => store.orders);
+  const activeFirst = carts.carts.sort((a, b) => b.active - a.active)
   console.log(carts)
-  // const activeFirst = carts.carts.sort((a, b) => b.active - a.active)
-
-  // const cartsWithoutOrders = carts.carts.filter(cart => cart.purchased = false)
-  // console.log("cwo", cartsWithoutOrders)
-  // unprocessed means purchased should be false, so filter out any purchased = true
-  // const unprocessedCarts = activeFirst.filter(cart => cart.purchased = false)
-
-  console.log("carts", carts)
-  console.log("orders", orders)
-
-  // console.log("unprocessed", unprocessedCarts)
-
-  // const orders = carts.carts.filter(cart => cart.purchased = true)
-
-  // console.log("orders", orders)
-
-  
 
   useEffect(() => {
     dispatch(loadCarts())
-    dispatch(loadOrders())
-    // carts.carts.map( cart => {
-    //   if (cart.purchased) {
-    //     setSortedOrders([...sortedOrders, cart])
-    //     console.log("from ternary", cart)
-    //   } else if (cart.active && cart.purchased == false) {
-    //     setSortedCarts([...sortedCarts, cart])
-    //   } else if (cart.active == false && cart.purchased == false) {
-    //     setSortedCarts([...sortedCarts, cart])
-    //   }
-    
-    // carts.carts.forEach(cart => {
-    //   if (cart.purchased == false) {
-    //     setSortedCarts([...sortedCarts, cart])
-    //   } else if (cart.purchased) {
-    //     setSortedOrders([...sortedOrders, cart])
-    //   }
-    // })
-    // console.log("carts and orders", sortedCarts, sortedOrders)
   }, [])
 
 
 
-  // useEffect(() => {
-  //   dispatch(loadCarts())
-  //   carts.carts.map(cart => {
-  //     if (cart.purchased === true) {
-  //       setSortedOrders([...sortedOrders, cart])
-  //       console.log("order", cart)
-  //     } else {
-  //       setSortedCarts([...sortedCarts, cart])
-  //       console.log("cart", cart)
-  //     }
-  //   })
-  // }, [])
 
   useEffect(() => {
   }, [])
@@ -106,14 +56,14 @@ const Cart = () => {
       <NavBar />
       <div>
         <h3 class="pl-20">Your Carts:</h3>
-        {carts.carts.map(cart => {
+        {activeFirst.map(cart => {
           return (
             <div key={cart.id} class="p-3 mb-3  w-9/12 m-auto bg-slate-200 rounded border-2 border-black columns-auto">
               <div class="w-15">
                   {cart.active ? 
                     <div class="m-8"><FontAwesomeIcon icon={faCartShopping} size="xl" style={{color: "#00ff00",}} /></div> 
                   : 
-                    <div class="m-8"><FontAwesomeIcon icon={faCartShopping} size="xl" style={{color: "#ff0000",}} /></div>
+                    <div class="m-8"><FontAwesomeIcon icon={faCircleCheck} size="xl" style={{color: "#000000",}} /></div>
                   }
               </div>
               <div class="w-fit font-sans">
@@ -140,10 +90,10 @@ const Cart = () => {
                   {
                     cart.active ?
                     <div>
-                      <button id={cart.id} onClick={(e) => handleSaveCart(e)} class="inset-0 bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow">Save Cart</button>
+                      {/* <button id={cart.id} onClick={(e) => handleSaveCart(e)} class="inset-0 bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow">Save Cart</button> */}
                       <button id={cart.id} onClick={(e) => handleEmptyCart(e)} class="inset-0 bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow">Empty Cart</button>
                       {
-                        cart.cart_items ? 
+                        cart.cart_items.length > 0 ? 
                         <button id={cart.id} onClick={(e) => handleCheckOut(e)} class="inset-0 bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow">Check Out</button>
                         :
                         <div></div>
@@ -152,8 +102,8 @@ const Cart = () => {
                     </div>
                     :
                     <div>
-                      <button id={cart.id} onClick={(e) => handleActivateCart(e)} class=" inset-0 bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow">Load Cart</button>
-                      <button id={cart.id} onClick={(e) => handleDeleteCart(e)} class=" inset-0 bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow">Delete Cart</button>
+                      {/* <button id={cart.id} onClick={(e) => handleActivateCart(e)} class=" inset-0 bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow">Load Cart</button> */}
+                      {/* <button id={cart.id} onClick={(e) => handleDeleteCart(e)} class=" inset-0 bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow">Delete Cart</button> */}
                     </div>
                   }
                 </div>
@@ -162,7 +112,7 @@ const Cart = () => {
           )
         })}
       </div>
-        {
+        {/* {
           orders ? 
           <div>
             <h3 class="pl-20">Completed Orders:</h3>
@@ -200,7 +150,7 @@ const Cart = () => {
           </div>
           :
           <div></div>
-        }
+        } */}
 
     </div>
   )

@@ -61,7 +61,7 @@ class CartItemsController < ApplicationController
 
     def find_active_cart
       # @active_cart = @current_user.carts.find(params[:active])
-      @active_cart = @current_user.carts.find_by active: true, purchased: false
+      @active_cart = @current_user.carts.find_by active: true
       # @active_cart = @current_user.carts.filter { |cart| cart.active = true }
     end
 

@@ -4,8 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCartShopping } from '@fortawesome/free-solid-svg-icons';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
-import { createOrder } from '../actions/orders';
-import { updateCart } from '../actions/carts';
+import { deactivateCart } from '../actions/carts';
 
 const CheckOut = () => {
   const dispatch = useDispatch();
@@ -15,37 +14,13 @@ const CheckOut = () => {
   const [errors, setErrors] = useState([]);
   const carts = useSelector(store => store.carts);
   const checkOutCart = carts.carts.find(cart => cart.id == params.id);
-  console.log(checkOutCart)
 
-  function processCheckOut () {
+
+  function processCheckOut (e) {
     setLoading(true)
-    fetch("/orders", {
-      method: "POST",
-      headers: {
-        "accept": "application/json",
-        "content-type": "application/json"
-      },
-      body: JSON.stringify(checkOutCart)
-    })
-    .then(r => {
-      if (r.ok) {
-        r.json().then(dispatch(createOrder(checkOutCart)))
-        .then(fetch("/carts/" + checkOutCart.id, {
-            method: "PATCH",
-            headers: {
-              "accept": "application/json",
-              "content-type": "application/json"
-            },
-            body: JSON.stringify({purchased: true, active: false})
-          })
-          .then(r => r.json())
-          .then(cart => dispatch(updateCart(cart)))
-        )
-        .then(navigate('/cart'))
-      } else {
-        r.json().then(data => setErrors(data.errors))
-      }
-    })
+    const id = e.target.id
+    dispatch(deactivateCart(id))
+    navigate('/cart')
   }
 
 
@@ -79,9 +54,9 @@ const CheckOut = () => {
                   <br></br>
                   {
                     loading ? 
-                    <button onClick={() => processCheckOut()} class="opacity-50 cursor-not-allowed inset-0 bg-white hover:bg-gray-100 text-gray-800 font-semibold py-4 px-4 border border-gray-400 rounded shadow">Please wait</button>
+                    <button class="opacity-50 cursor-not-allowed inset-0 bg-white hover:bg-gray-100 text-gray-800 font-semibold py-4 px-4 border border-gray-400 rounded shadow">Please wait</button>
                     :
-                    <button onClick={() => processCheckOut()} class="inset-0 bg-white hover:bg-gray-100 text-gray-800 font-semibold py-4 px-4 border border-gray-400 rounded shadow">Check Out</button>
+                    <button id={checkOutCart.id} onClick={(e) => processCheckOut(e)} class="inset-0 bg-white hover:bg-gray-100 text-gray-800 font-semibold py-4 px-4 border border-gray-400 rounded shadow">Check Out</button>
                   }
                 </div>
               </div>

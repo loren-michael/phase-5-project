@@ -7,16 +7,17 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCartShopping, faCircleCheck } from '@fortawesome/free-solid-svg-icons';
 import { deactivateCart } from '../actions/carts';
 import { useNavigate } from 'react-router-dom';
+import { loadOrders } from '../actions/orders';
 
 const Cart = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const [sortedOrders, setSortedOrders] = useState([]);
-  const [sortedCarts, setSortedCarts] = useState([]);
+  // const [sortedOrders, setSortedOrders] = useState([]);
+  // const [sortedCarts, setSortedCarts] = useState([]);
   const carts = useSelector(store => store.carts);
   const orders = useSelector(store => store.orders);
 
-  // const activeFirst = carts.carts.sort((a, b) => b.active - a.active)
+  const activeFirst = carts.carts.sort((a, b) => b.active - a.active)
 
   // const cartsWithoutOrders = carts.carts.filter(cart => cart.purchased = false)
   // console.log("cwo", cartsWithoutOrders)
@@ -32,25 +33,21 @@ const Cart = () => {
 
   // console.log("orders", orders)
 
+  
 
   useEffect(() => {
     dispatch(loadCarts())
-
-    carts.carts.map( cart => {
-      if (cart.purchased) {
-        setSortedOrders([...sortedOrders, cart])
-        console.log("from ternary", cart)
-      } else if (cart.active && cart.purchased == false) {
-        setSortedCarts([...sortedCarts, cart])
-      } else if (cart.active == false && cart.purchased == false) {
-        setSortedCarts([...sortedCarts, cart])
-      }
-    }
-    )
-
-
-
-
+    dispatch(loadOrders())
+    // carts.carts.map( cart => {
+    //   if (cart.purchased) {
+    //     setSortedOrders([...sortedOrders, cart])
+    //     console.log("from ternary", cart)
+    //   } else if (cart.active && cart.purchased == false) {
+    //     setSortedCarts([...sortedCarts, cart])
+    //   } else if (cart.active == false && cart.purchased == false) {
+    //     setSortedCarts([...sortedCarts, cart])
+    //   }
+    
     // carts.carts.forEach(cart => {
     //   if (cart.purchased == false) {
     //     setSortedCarts([...sortedCarts, cart])
@@ -109,7 +106,7 @@ const Cart = () => {
       <NavBar />
       <div>
         <h3 class="pl-20">Your Carts:</h3>
-        {sortedCarts.map(cart => {
+        {activeFirst.map(cart => {
           return (
             <div key={cart.id} class="p-3 mb-3  w-9/12 m-auto bg-slate-200 rounded border-2 border-black columns-auto">
               <div class="w-15">
@@ -166,10 +163,10 @@ const Cart = () => {
         })}
       </div>
         {
-          sortedOrders ? 
+          orders ? 
           <div>
             <h3 class="pl-20">Completed Orders:</h3>
-            {sortedOrders.map(order => {
+            {orders.map(order => {
               return (
                 <div key={order.id} class="p-3 pb-6 mb-3 w-9/12 m-auto bg-slate-200 rounded border-2 border-black columns-auto">
                   <div class="w-15 font-sans text-lg">

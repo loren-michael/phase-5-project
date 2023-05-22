@@ -21,15 +21,6 @@ class CartsController < ApplicationController
   def create
     @cart = @current_user.carts.create!(cart_params)
     render json: @cart, status: :created
-    
-    
-    # @cart = @current_user.cart.new(active: true, purchased: false)
-
-    # if @cart.save
-    #   render json: @cart, status: :created, location: @cart
-    # else
-    #   render json: @cart.errors, status: 422
-    # end
   end
 
   # PATCH/PUT /carts/1

@@ -190,12 +190,12 @@ i12 = Item.create(
 )
 
 
-puts "Filling Carts"
+# puts "Filling Carts"
 
 # ci1 = CartItem.create(cart_id: c1.id, item_id: i5.id)
 # ci2 = CartItem.create(cart_id: c1.id, item_id: i12.id)
-c1.add_item(i11, 12)
-c1.add_item(i12, 1)
+# c1.add_item(i11, 12)
+# c1.add_item(i12, 1)
 
 
 puts "Basic Store Seeding Complete"

@@ -17,32 +17,46 @@ const Cart = () => {
 
   const activeFirst = carts.carts.sort((a, b) => b.active - a.active)
 
-  const cartsWithoutOrders = carts.carts.filter(cart => cart.purchased = false)
-  console.log("cwo", cartsWithoutOrders)
+  // const cartsWithoutOrders = carts.carts.filter(cart => cart.purchased = false)
+  // console.log("cwo", cartsWithoutOrders)
   // unprocessed means purchased should be false, so filter out any purchased = true
-  const unprocessedCarts = activeFirst.filter(cart => cart.purchased = false)
+  // const unprocessedCarts = activeFirst.filter(cart => cart.purchased = false)
 
   console.log("carts", carts)
 
-  console.log("unprocessed", unprocessedCarts)
+  // console.log("unprocessed", unprocessedCarts)
 
-  const orders = carts.carts.filter(cart => cart.purchased = true)
+  // const orders = carts.carts.filter(cart => cart.purchased = true)
 
-  console.log("orders", orders)
-
-
+  // console.log("orders", orders)
 
 
   useEffect(() => {
     dispatch(loadCarts())
-    carts.carts.map(cart => {
-      if (cart.purchased === true) {
-        setSortedOrders([...sortedOrders, cart])
-      } else {
-        setSortedCarts([...sortedCarts, cart])
-      }
-    })
-  }, [dispatch])
+    // carts.carts.forEach(cart => {
+    //   if (cart.purchased == false) {
+    //     setSortedCarts([...sortedCarts, cart])
+    //   } else if (cart.purchased) {
+    //     setSortedOrders([...sortedOrders, cart])
+    //   }
+    // })
+    // console.log("carts and orders", sortedCarts, sortedOrders)
+  }, [])
+
+
+
+  // useEffect(() => {
+  //   dispatch(loadCarts())
+  //   carts.carts.map(cart => {
+  //     if (cart.purchased === true) {
+  //       setSortedOrders([...sortedOrders, cart])
+  //       console.log("order", cart)
+  //     } else {
+  //       setSortedCarts([...sortedCarts, cart])
+  //       console.log("cart", cart)
+  //     }
+  //   })
+  // }, [])
 
   useEffect(() => {
   }, [])
@@ -77,7 +91,7 @@ const Cart = () => {
       <NavBar />
       <div>
         <h3 class="pl-20">Your Carts:</h3>
-        {unprocessedCarts.map(cart => {
+        {activeFirst.map(cart => {
           return (
             <div key={cart.id} class="p-3 mb-3  w-9/12 m-auto bg-slate-200 rounded border-2 border-black columns-auto">
               <div class="w-15">
@@ -134,12 +148,12 @@ const Cart = () => {
         })}
       </div>
         {
-          orders ? 
+          sortedOrders ? 
           <div>
             <h3 class="pl-20">Completed Orders:</h3>
-            {orders.map(order => {
+            {sortedOrders.map(order => {
               return (
-                <div key={order.id} class="p-3 mb-3 w-9/12 m-auto bg-slate-200 rounded border-2 border-black columns-auto">
+                <div key={order.id} class="p-3 pb-6 mb-3 w-9/12 m-auto bg-slate-200 rounded border-2 border-black columns-auto">
                   <div class="w-15 font-sans text-lg">
                   <FontAwesomeIcon icon={faCircleCheck} size="xl" style={{color: "#000000",}} /> Order Completed<br></br><br></br>
                   </div>
@@ -163,25 +177,6 @@ const Cart = () => {
                   <div class="relative h-32 w-32">
                     <div class="">
                       <br></br>
-                      {/* {
-                        order.active ?
-                        <div>
-                          <button id={order.id} onClick={(e) => handleSaveCart(e)} class="inset-0 bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow">Save Cart</button>
-                          <button id={order.id} onClick={(e) => handleEmptyCart(e)} class="inset-0 bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow">Empty Cart</button>
-                          {
-                            order.cart_items ? 
-                            <button id={order.id} onClick={(e) => handleCheckOut(e)} class="inset-0 bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow">Check Out</button>
-                            :
-                            <div></div>
-                          }
-                          
-                        </div>
-                        :
-                        <div>
-                          <button id={order.id} onClick={(e) => handleActivateCart(e)} class=" inset-0 bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow">Load Cart</button>
-                          <button id={order.id} onClick={(e) => handleDeleteCart(e)} class=" inset-0 bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow">Delete Cart</button>
-                        </div>
-                      } */}
                     </div>
                   </div>
                 </div>

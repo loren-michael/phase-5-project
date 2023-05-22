@@ -33,8 +33,8 @@ const NavBar = () => {
         {loggedIn ? 
           <span class="float-right" className="loginLinks">
             <span class="font-sans font-medium text-lg pr-5 ">Welcome, {currentUser.username}! </span>
-            <NavLink to="/cart" href="/cart" class="font-sans text-lg text-black"><FontAwesomeIcon onClick={handleCart} icon={faCartShopping} size="xl" style={{color: "#000000", padding: "10px"}} /></NavLink>
-            <FontAwesomeIcon onClick={handleLogout} icon={faArrowRightFromBracket} size="xl" style={{color: "#000000", padding: "10px"}} />
+            <NavLink to="/cart" href="/cart" class="font-sans text-lg text-black"><FontAwesomeIcon onClick={() => handleCart()} icon={faCartShopping} size="xl" style={{color: "#000000", padding: "10px"}} /></NavLink>
+            <NavLink to="/" href="/" class="font-sans text-lg text-black"><FontAwesomeIcon onClick={() => handleLogout()} icon={faArrowRightFromBracket} size="xl" style={{color: "#000000", padding: "10px"}} /></NavLink>
             {/* <FontAwesomeIcon icon={faBars} size="xl" style={{color: "#000000", padding: "10px"}} /> */}
           </span>
         :

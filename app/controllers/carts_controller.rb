@@ -19,7 +19,7 @@ class CartsController < ApplicationController
 
   # POST /carts
   def create
-    @cart = @current_user.carts.create!(cart_params)
+    @cart = @current_user.carts.create!(active: true, purchased: false)
     render json: @cart, status: :created
   end
 

@@ -15,7 +15,7 @@ const CheckOut = () => {
   const [errors, setErrors] = useState([]);
   const carts = useSelector(store => store.carts);
   const checkOutCart = carts.carts.find(cart => cart.id == params.id);
-
+  console.log(checkOutCart)
 
   function processCheckOut () {
     setLoading(true)

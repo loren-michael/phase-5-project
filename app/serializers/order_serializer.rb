@@ -6,7 +6,7 @@ class OrderSerializer < ActiveModel::Serializer
 
   def order_price
     sum = 0.0
-    self.object.cart_items.each do |item|
+    self.object.order_items.each do |item|
       sum += item.total_item_cost
     end
     sum

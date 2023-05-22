@@ -3,9 +3,8 @@ class OrdersController < ApplicationController
 
   # GET /orders
   def index
-    @orders = Order.all
-
-    render json: @orders
+    orders = @current_user.orders
+    render json: orders
   end
 
   # GET /orders/1
@@ -15,20 +14,13 @@ class OrdersController < ApplicationController
 
   # POST /orders
   def create
-    order = @current_user.orders.new(cart_id: params[:id])
+    order = @current_user.orders.create!(order_params)
+    render json: order, status: :created
+  end
 
-    if order.save
-      render json: order, status: :created
-    else
-      render json: { errors: [order.errors.full_messages] }
-    end
-    # order = @current_user.orders.create!(cart_id: params[:cart_id])
-    # render json: order, status: :created
-    # if @order.save
-    #   render json: @order, status: :created, location: @order
-    # else
-    #   render json: @order.errors, status: :unprocessable_entity
-    # end
+  def process_cart_items
+    cart = @current_user.carts.find(params[:id])
+    puts cart
   end
 
   # PATCH/PUT /orders/1

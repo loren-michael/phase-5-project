@@ -16,8 +16,8 @@ const Cart = () => {
   // const [sortedCarts, setSortedCarts] = useState([]);
   const carts = useSelector(store => store.carts);
   const orders = useSelector(store => store.orders);
-
-  const activeFirst = carts.carts.sort((a, b) => b.active - a.active)
+  console.log(carts)
+  // const activeFirst = carts.carts.sort((a, b) => b.active - a.active)
 
   // const cartsWithoutOrders = carts.carts.filter(cart => cart.purchased = false)
   // console.log("cwo", cartsWithoutOrders)
@@ -106,7 +106,7 @@ const Cart = () => {
       <NavBar />
       <div>
         <h3 class="pl-20">Your Carts:</h3>
-        {activeFirst.map(cart => {
+        {carts.carts.map(cart => {
           return (
             <div key={cart.id} class="p-3 mb-3  w-9/12 m-auto bg-slate-200 rounded border-2 border-black columns-auto">
               <div class="w-15">

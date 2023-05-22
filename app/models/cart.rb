@@ -1,6 +1,6 @@
 class Cart < ApplicationRecord
   belongs_to :user
-  has_many :cart_items, dependent: :destroy
+  has_many :cart_items
   has_many :items, through: :cart_items
 
   def add_item item, qty
@@ -9,7 +9,7 @@ class Cart < ApplicationRecord
 
   def cart_price
     sum = 0.0
-    self.object.cart_items.each do |item|
+    self.object.order_items.each do |item|
       sum += item.total_item_cost
     end
     sum

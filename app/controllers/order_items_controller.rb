@@ -1,11 +1,12 @@
 class OrderItemsController < ApplicationController
   before_action :set_order_item, only: [:show, :update, :destroy]
+  before_action :authorize
 
   # GET /order_items
   def index
-    @order_items = OrderItem.all
+    items = @current_user.order_items
 
-    render json: @order_items
+    render json: items, include: :item
   end
 
   # GET /order_items/1
@@ -15,13 +16,20 @@ class OrderItemsController < ApplicationController
 
   # POST /order_items
   def create
-    @order_item = OrderItem.new(order_item_params)
+    find_order
+    item = Item.find_by_id(params[:id])
 
-    if @order_item.save
-      render json: @order_item, status: :created, location: @order_item
-    else
-      render json: @order_item.errors, status: :unprocessable_entity
-    end
+
+    # For each item in a cart I need to create an order item
+
+    # SCAFFOLD CODE BELOW
+    # @order_item = OrderItem.new(order_item_params)
+
+    # if @order_item.save
+    #   render json: @order_item, status: :created, location: @order_item
+    # else
+    #   render json: @order_item.errors, status: :unprocessable_entity
+    # end
   end
 
   # PATCH/PUT /order_items/1
@@ -39,6 +47,11 @@ class OrderItemsController < ApplicationController
   end
 
   private
+
+    def find_order
+      @order = @current_user.orders.find_by_id(params[:id])
+    end
+
     # Use callbacks to share common setup or constraints between actions.
     def set_order_item
       @order_item = OrderItem.find(params[:id])

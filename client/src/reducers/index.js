@@ -4,6 +4,7 @@ import usersReducer from "./usersReducer";
 import sessionsReducer from './sessionsReducer';
 import cartsReducer from './cartsReducer';
 import cartItemsReducer from './cartItemsReducer';
+import orderItemsReducer from "./orderItemsReducer";
 
 export default combineReducers({
   items: itemsReducer,
@@ -11,4 +12,5 @@ export default combineReducers({
   sessions: sessionsReducer,
   carts: cartsReducer,
   cartItems: cartItemsReducer,
+  orderItems: orderItemsReducer
 })

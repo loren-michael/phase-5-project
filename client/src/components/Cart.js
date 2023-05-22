@@ -14,8 +14,9 @@ const Cart = () => {
   const [sortedOrders, setSortedOrders] = useState([]);
   const [sortedCarts, setSortedCarts] = useState([]);
   const carts = useSelector(store => store.carts);
+  const orders = useSelector(store => store.orders);
 
-  const activeFirst = carts.carts.sort((a, b) => b.active - a.active)
+  // const activeFirst = carts.carts.sort((a, b) => b.active - a.active)
 
   // const cartsWithoutOrders = carts.carts.filter(cart => cart.purchased = false)
   // console.log("cwo", cartsWithoutOrders)
@@ -23,6 +24,7 @@ const Cart = () => {
   // const unprocessedCarts = activeFirst.filter(cart => cart.purchased = false)
 
   console.log("carts", carts)
+  console.log("orders", orders)
 
   // console.log("unprocessed", unprocessedCarts)
 
@@ -33,6 +35,22 @@ const Cart = () => {
 
   useEffect(() => {
     dispatch(loadCarts())
+
+    carts.carts.map( cart => {
+      if (cart.purchased) {
+        setSortedOrders([...sortedOrders, cart])
+        console.log("from ternary", cart)
+      } else if (cart.active && cart.purchased == false) {
+        setSortedCarts([...sortedCarts, cart])
+      } else if (cart.active == false && cart.purchased == false) {
+        setSortedCarts([...sortedCarts, cart])
+      }
+    }
+    )
+
+
+
+
     // carts.carts.forEach(cart => {
     //   if (cart.purchased == false) {
     //     setSortedCarts([...sortedCarts, cart])
@@ -91,7 +109,7 @@ const Cart = () => {
       <NavBar />
       <div>
         <h3 class="pl-20">Your Carts:</h3>
-        {activeFirst.map(cart => {
+        {sortedCarts.map(cart => {
           return (
             <div key={cart.id} class="p-3 mb-3  w-9/12 m-auto bg-slate-200 rounded border-2 border-black columns-auto">
               <div class="w-15">

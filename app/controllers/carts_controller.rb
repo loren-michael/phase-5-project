@@ -54,17 +54,15 @@ class CartsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
+
     def set_cart
       @cart = Cart.find(params[:id])
     end
 
-    # Only allow a list of trusted parameters through.
     def cart_params
       params.permit(:user_id, :active, :purchased)
     end
 
-    # Deactivate all of current user's carts so that one can be activated.
     def deactivate_carts
       @current_user.carts.each do |cart|
         cart.update(active: false)

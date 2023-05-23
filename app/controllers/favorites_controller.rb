@@ -39,12 +39,11 @@ class FavoritesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
+
     def set_favorite
       @favorite = Favorite.find(params[:id])
     end
 
-    # Only allow a list of trusted parameters through.
     def favorite_params
       params.require(:favorite).permit(:item_id_id, :user_id_id)
     end

@@ -18,18 +18,6 @@ class OrderItemsController < ApplicationController
   def create
     find_order
     item = Item.find_by_id(params[:id])
-
-
-    # For each item in a cart I need to create an order item
-
-    # SCAFFOLD CODE BELOW
-    # @order_item = OrderItem.new(order_item_params)
-
-    # if @order_item.save
-    #   render json: @order_item, status: :created, location: @order_item
-    # else
-    #   render json: @order_item.errors, status: :unprocessable_entity
-    # end
   end
 
   # PATCH/PUT /order_items/1

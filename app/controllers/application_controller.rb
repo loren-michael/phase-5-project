@@ -3,8 +3,6 @@ class ApplicationController < ActionController::API
   rescue_from ActiveRecord::RecordInvalid, with: :render_422
   before_action :authorize
 
-
-
   private
 
     def authorize

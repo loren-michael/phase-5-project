@@ -2,8 +2,6 @@ import React, { useEffect } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import './App.css';
 import Home from './components/Home';
-import StoresContainer from './components/StoresContainer';
-import Store from './components/Store';
 import Cart from './components/Cart';
 import ItemsContainer from './components/ItemsContainer';
 import ItemDetails from './components/ItemDetails';
@@ -26,12 +24,6 @@ function App() {
     dispatch(loadSession())
   }, [])
 
-
-  useEffect(() => {
-    
-  }, [])
-
-
   return (
     <BrowserRouter>
       <div id="background-color">
@@ -39,8 +31,6 @@ function App() {
           <Route exact path="/" element={ <Home /> }/>
           <Route path="/signup" element={ <SignUp /> } />
           <Route path="/login" element={ <Login /> } />
-          <Route path="/stores" element={ <StoresContainer /> } />
-          <Route path="/stores/:id" element={ <Store /> } />
           <Route path="/cart" element={ <Cart /> } />
           <Route path="/items" element={ <ItemsContainer /> } />
           <Route path="/items/:id" element={ <ItemDetails /> } />

@@ -3,10 +3,12 @@ import NavBar from './NavBar'
 import { useDispatch, useSelector } from 'react-redux'
 import { NavLink, useNavigate } from 'react-router-dom'
 import { loadSession } from '../actions/sessions'
+import { deleteItem } from '../actions/items'
 
 
 const Profile = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const { loggedIn, currentUser } = useSelector(store => store.sessions);
   console.log(currentUser)
   // const [loading, setLoading] = useState(true)
@@ -17,6 +19,11 @@ const Profile = () => {
 
   function handleFormNav () {
     navigate('/new_item')
+  }
+
+  function handleDeleteListing (e) {
+    console.log(e.target.id)
+    dispatch(deleteItem(e.target.id))
   }
 
   return (
@@ -33,7 +40,7 @@ const Profile = () => {
           <div></div>
           </div>
             <div class="max-w-2/4 pt-6 p-2 font-sans text-xl font-semibold text-center">
-              {currentUser.username}'s Listed Items
+              Listed Items
                   <div>
                     {currentUser.items.map(item => {
                       return (
@@ -42,7 +49,10 @@ const Profile = () => {
                             {item.title}
                           </div>
                           <div class="text-lg text-right">
-                          <NavLink to="/profile" href="/profile" class="font-sans text-lg text-black">Go To Listing</NavLink>
+                          <button id={item.id} onClick={(e) => handleDeleteListing(e)} class="inset-0 bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow">Delete Listing</button>
+                          <NavLink to={`/items/${item.id}`} href={`/items/${item.id}`} class="font-sans text-lg text-black">
+                            <button onClick={() => handleFormNav()} class="inset-0 bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow">Go To Listing</button>
+                          </NavLink>
                           </div>
                         </div>
                       )

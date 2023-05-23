@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import NavBar from './NavBar';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate, useParams } from 'react-router-dom';
-import { loadItem } from '../actions/items';
+import { deleteItem, loadItem } from '../actions/items';
 import { addItemToCart } from '../actions/carts';
 
 
@@ -12,9 +12,10 @@ const ItemDetails = () => {
   const params = useParams();
   const itemId = params.id;
   const displayItem = useSelector(store => store.items.displayItem)
+  const currentUser = useSelector(store => store.sessions.currentUser)
   const [loading, setLoading] = useState(true)
   const loggedIn = useSelector(store => store.sessions.loggedIn)
-
+  // console.log(displayItem)
 
   useEffect(() => {
     dispatch(loadItem(itemId))
@@ -26,6 +27,11 @@ const ItemDetails = () => {
   function handleAddCart() {
     dispatch(addItemToCart(displayItem.id))
     navigate("/cart")
+  }
+
+  function handleDeleteListing (e) {
+    dispatch(deleteItem(e.target.id))
+    navigate("/profile")
   }
 
 
@@ -58,7 +64,15 @@ const ItemDetails = () => {
             </div>
             <div>
               { loggedIn ?
-                <button onClick={() => handleAddCart()} class="bg-transparent hover:bg-black text-black font-semibold hover:text-white py-2 px-4 border border-black hover:border-transparent rounded">Add To Cart</button>
+                <div>
+                  {
+                    displayItem.user_id === currentUser.id ?
+                    <button id={displayItem.id} onClick={(e) => handleDeleteListing(e)} class="bg-transparent hover:bg-black text-black font-semibold hover:text-white py-2 px-4 border border-black hover:border-transparent rounded">Delete Listing</button>
+                    :
+                    <button onClick={() => handleAddCart()} class="bg-transparent hover:bg-black text-black font-semibold hover:text-white py-2 px-4 border border-black hover:border-transparent rounded">Add To Cart</button>
+                  }
+                </div>
+                
                 :
                 <Link href="/login" to="/login" class="font-sans bg-black font-semibold hover:text-white py-2 px-4 border border-black rounded">Log in to purchase</Link>
               }

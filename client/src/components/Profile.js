@@ -24,7 +24,6 @@ const Profile = () => {
   }
 
   function handleDeleteListing (e) {
-    console.log(e.target.id)
     dispatch(deleteItem(e.target.id))
   }
 

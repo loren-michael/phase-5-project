@@ -19,11 +19,6 @@ const cartsReducer = (state=initialState, action) => {
         ...state,
         carts: [...state.items, action.payload]
       };
-    // case "DELETE_CART_ITEM":
-    //   return {
-    //     ...state,
-    //     carts: state.items.filter(item => item.id !== action.payload.id)
-    //   };
     case "EMPTY_CART":
       return {
         ...state,

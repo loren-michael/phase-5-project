@@ -1,9 +1,3 @@
-const baseURL = 'http://localhost:3000';
-const headers = {
-  "Content-Type": "application/json",
-  "Accept": "application/json"
-};
-
 export const loadSession = user => {
   return (dispatch)  => {
     fetch("/me")

@@ -14,30 +14,6 @@ const cartItemsReducer = (state=initialState, action) => {
         ...state,
         cartItems: [...state.cartItems, action.payload]
       };
-
-    // case "DELETE_CART_ITEM":
-    //   return (dispatch) {
-    //     ...state,
-    //     carts: {
-    //       carts: [
-            
-    //       ]
-    //     }
-    //   };
-    // case "DELETE_CART_ITEM":
-    //   return {
-    //     ...state,
-    //     carts: {
-    //       carts: state.carts.map(cart => {
-    //         if (cart.id === action.payload.cart_id) {
-    //           return cart.items.filter(item => item.id !== action.payload.item_id)
-    //         } else {
-    //           return cart
-    //         }
-    //       })
-    //     }
-    //     // carts: state.carts.cartItems.filter(item => item.id !== action.payload.id)
-    //   };
     default:
       return state;
   }

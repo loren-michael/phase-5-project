@@ -1,6 +1,3 @@
-import { useActionData } from "react-router-dom";
-
-// const baseURL = 'http://localhost:3000';
 const headers = {
   "Content-Type": "application/json",
   "Accept": "application/json"
@@ -29,7 +26,6 @@ export const deleteItem = id => {
     })
     .then(r => r.json())
     .then(item => dispatch({type: "DELETE_ITEM", payload: item}))
-    // .then(item => dispatch({type: "DELETE_ITEM_FROM_USER", payload: item}))
   }
 }
 

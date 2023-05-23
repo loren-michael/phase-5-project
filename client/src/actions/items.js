@@ -16,6 +16,7 @@ export const addItem = item => {
     })
     .then(r => r.json())
     .then(item => dispatch({ type: "CREATE_ITEM", payload: item }))
+    .then(item => dispatch({ type: "ADD_ITEM_TO_USER", payload: item }))
   }
 }
 
@@ -28,6 +29,7 @@ export const deleteItem = id => {
     })
     .then(r => r.json())
     .then(item => dispatch({type: "DELETE_ITEM", payload: item}))
+    .then(item => dispatch({type: "DELETE_ITEM_FROM_USER", payload: item}))
   }
 }
 

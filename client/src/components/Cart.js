@@ -30,13 +30,13 @@ const Cart = () => {
     dispatch(deleteCartItem(e.target.id))
   }
 
-  function handleSaveCart (e) {
-    dispatch(deactivateCart(e.target.id))
-  }
+  // function handleSaveCart (e) {
+  //   dispatch(deactivateCart(e.target.id))
+  // }
 
-  function handleActivateCart (e) {
-    dispatch(activateCart(e.target.id))
-  }
+  // function handleActivateCart (e) {
+  //   dispatch(activateCart(e.target.id))
+  // }
 
   function handleEmptyCart (e) {
     dispatch(emptyCart(e.target.id))
@@ -71,7 +71,12 @@ const Cart = () => {
                   const cartItemId = cart.cart_items.filter(ci => ci.item_id === item.id)
                   return (
                     <div class="flex flex-wrap" key={item.id}>
-                      <button id={cartItemId[0].id} onClick={(e) => handleRemoveItem(e)} class="inset-0 bg-white hover:bg-gray-100 text-gray-800 font-semibold py-1 px-2 border border-gray-400 rounded shadow">Remove</button>
+                      {
+                        cart.active ? 
+                        <button id={cartItemId[0].id} onClick={(e) => handleRemoveItem(e)} class="inset-0 bg-white hover:bg-gray-100 text-gray-800 font-semibold py-1 px-2 border border-gray-400 rounded shadow">Remove</button>
+                        :
+                        null
+                      }
                       <p class="pl-5 align-middle">{item.title.substring(0,25)}</p>
                       <div class="pl-12"> ${item.price}</div>
                     </div>

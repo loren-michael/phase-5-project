@@ -13,11 +13,6 @@ const Profile = () => {
 
   useEffect(() => {
     loadSession()
-    // if (currentUser) {
-    //   console.log(currentUser)
-    // } else {
-    //   console.log("no user")
-    // }
   },[])
 
   function handleFormNav () {

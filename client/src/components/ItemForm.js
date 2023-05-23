@@ -42,7 +42,7 @@ const ItemForm = () => {
     e.preventDefault();
     dispatch(addItem(item))
     resetForm()
-    navigate('/profile')
+    navigate("/")
   }
 
   // console.log("err", errors)

@@ -13,6 +13,7 @@ const Cart = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const carts = useSelector(store => store.carts);
+  const store = useSelector(store => store)
   const activeFirst = carts.carts.sort((a, b) => b.active - a.active)
   console.log(carts)
 
@@ -97,6 +98,7 @@ const Cart = () => {
                     <div>
                       {/* <button id={cart.id} onClick={(e) => handleSaveCart(e)} class="inset-0 bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow">Save Cart</button> */}
                       <button id={cart.id} onClick={(e) => handleEmptyCart(e)} class="inset-0 bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow">Empty Cart</button>
+                      <button id={cart.id} onClick={(e) => handleDeleteCart(e)} class="inset-0 bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow">Delete Cart</button>
                       {
                         cart.cart_items.length > 0 ? 
                         <button id={cart.id} onClick={(e) => handleCheckOut(e)} class="inset-0 bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow">Check Out</button>

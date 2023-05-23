@@ -73,7 +73,22 @@ const cartsReducer = (state=initialState, action) => {
             return action.payload
           }
         })
-      }
+      };
+    case "DELETE_CART_ITEM":
+      return {
+        ...state,
+        carts: state.carts.map(cart => {
+          if (cart.id == action.payload.cart.id) {
+            return {
+              ...cart,
+              items: cart.items.filter(item => item.id !== action.payload.item.id),
+              cart_price: action.payload.cart.cart_price
+            }
+          } else {
+            return cart
+          }
+        })
+      };
     default:
       return state;
   }

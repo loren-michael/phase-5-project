@@ -17,23 +17,6 @@ const sessionsReducer = (state=initialState, action) => {
         loggedIn: true,
         currentUser: action.payload
       };
-    case "ADD_ITEM_TO_USER":
-      return {
-        ...state,
-        loggedIn: true,
-        currentUser: {
-          items: [...state.items, action.payload]
-        }
-      };
-    case "DELETE_ITEM_FROM_USER":
-      return {
-        ...state,
-        loggedIn: true,
-        currentUser: {
-          ...state,
-          items: [state.currentUser.items.filter(item => item.id !== action.payload.id)]
-        }
-      };
     case "DELETE_SESSION":
       return initialState
     default:

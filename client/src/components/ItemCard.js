@@ -5,16 +5,14 @@ import { useNavigate } from 'react-router-dom';
 
 
 const ItemCard = ({ item, setDetailedItem }) => {
-  // const itemSummary = item.description.substring(0,39);
   const navigate = useNavigate()
 
-  // console.log(item.id)
 
   function handleViewItem() {
     setDetailedItem(item)
     navigate(`/items/${item.id}`)
   }
-  // console.log(item)
+
 
   return (
       <a class="card" href={`/items/${item.id}`} style={{height: "300px", margin: "10px"}} onClick={handleViewItem} >

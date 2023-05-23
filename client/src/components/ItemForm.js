@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState } from 'react';
 import { addItem } from '../actions/items';
 import { useDispatch } from 'react-redux';
 import NavBar from './NavBar';
@@ -9,7 +9,6 @@ import { useNavigate } from 'react-router-dom';
 const ItemForm = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const errRef = useRef();
   const [errors, setErrors] = useState([]);
   const [item, setItem] = useState({
     title: "",
@@ -22,7 +21,6 @@ const ItemForm = () => {
     model: "",
     price: 0.00
   })
-
 
   function resetForm() {
     setItem({
@@ -45,7 +43,6 @@ const ItemForm = () => {
     navigate("/")
   }
 
-  // console.log("err", errors)
 
   return (
     <div>

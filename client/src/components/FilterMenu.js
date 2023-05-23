@@ -16,25 +16,6 @@ const FilterMenu = ({ setFilterCategory }) => {
         <button class="font-sans font-semibold" onClick={() => setFilterCategory("Pro Audio")} >Pro Audio</button>
         <button class="font-sans font-semibold" onClick={() => setFilterCategory("Accessories")} >Accessories</button>
     </div>
-    // <div 
-      // class="ui centered grid menu" 
-      // id="background-color"
-    // >
-        // <div class="center aligned column">
-        //   <div class="ui compact menu">
-        //     <div class="item" onClick={() => setFilterCategory("All")}>View All</div>
-        //     <div class="item" onClick={() => setFilterCategory("Guitars")}>Guitars</div>
-        //     <div class="item" onClick={() => setFilterCategory("Keyboards & Synth")}>Keyboards & Synth</div>
-        //     <div class="item" onClick={() => setFilterCategory("GuitDrums & Percussionars")}>Drums & Percussion</div>
-        //     <div class="item" onClick={() => setFilterCategory("Folk Instruments")}>Folk Instruments</div>
-        //     <div class="item" onClick={() => setFilterCategory("Pedals & Amps")}>Pedals & Amps</div>
-        //     <div class="item" onClick={() => setFilterCategory("Microphones")}>Microphones</div>
-        //     <div class="item" onClick={() => setFilterCategory("Pro Audio")}>Pro Audio</div>
-        //     <div class="item" onClick={() => setFilterCategory("Accessories")}>Accessories</div>
-        //   </div>        
-        // </div>
-    // {/* </div> */}
-    // <div></div>
     )
 }
 

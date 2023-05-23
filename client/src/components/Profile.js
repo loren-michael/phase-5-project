@@ -11,12 +11,9 @@ const Profile = () => {
   const dispatch = useDispatch();
   const { loggedIn, currentUser } = useSelector(store => store.sessions);
   const items = useSelector(store => store.items.items)
-  // console.log(currentUser)
-  console.log(items)
 
   useEffect(() => {
     loadSession()
-
   },[])
 
   function handleFormNav () {

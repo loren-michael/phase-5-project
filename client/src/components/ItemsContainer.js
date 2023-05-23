@@ -4,9 +4,7 @@ import ItemCard from './ItemCard'
 import FilterMenu from './FilterMenu';
 
 const ItemsContainer = () => {
-  // const items = useSelector(store => store.itemsReducer.items)
   const items = useSelector(store => store.items)
-  console.log(items)
   const [filterCategory, setFilterCategory] = useState("All")
   const [displayItems, setDisplayItems] = useState([])
 

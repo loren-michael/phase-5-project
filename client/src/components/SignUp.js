@@ -5,7 +5,6 @@ import { faCheck, faTimes, faInfoCircle } from '@fortawesome/free-solid-svg-icon
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { useDispatch } from 'react-redux';
 import { createSession } from '../actions/sessions';
-import NavBar from './NavBar';
 import logo from '../images/sellit-4.png'
 
 
@@ -15,7 +14,6 @@ const EMAIL_REGEX = /^[A-Za-z0-9.-]+@[A-Za-z0-9.-]+$/;
 ;
 
 const SignUp = () => {
-  // const userRef = useRef();
   const errRef = useRef();
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -38,27 +36,16 @@ const SignUp = () => {
   const [matchFocus, setMatchFocus] = useState(false);
 
   const [errMsg, setErrMsg] = useState('');
-  // const [success, setSuccess] = useState(false);
 
 
   // test username against username regex whenever username is changed
   useEffect(() => {
-    // const USER_REGEX = /^[a-zA-Z][a-zA-Z0-9-_]{3,23}$/;
-    // const result = USER_REGEX.test(username);
-    // console.log(result)
-    // console.log(username)
     setValidName(USER_REGEX.test(username))
   }, [username])
 
   // test password against password regex AND verify matching password
   useEffect(() => {
-    // const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/;
-    // const result = PWD_REGEX.test(password);
-    // console.log(result);
-    // console.log(password);
     setValidPwd(PWD_REGEX.test(password));
-    // const match = (password === matchPwd);
-    // console.log(validMatch)
     setValidMatch(password === matchPwd);
   }, [password, matchPwd]);
 

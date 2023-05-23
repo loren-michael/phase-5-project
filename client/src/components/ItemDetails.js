@@ -15,7 +15,6 @@ const ItemDetails = () => {
   const currentUser = useSelector(store => store.sessions.currentUser)
   const [loading, setLoading] = useState(true)
   const loggedIn = useSelector(store => store.sessions.loggedIn)
-  // console.log(displayItem)
 
   useEffect(() => {
     dispatch(loadItem(itemId))

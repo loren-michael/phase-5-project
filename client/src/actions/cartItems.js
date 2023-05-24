@@ -44,6 +44,5 @@ export const deleteCartItem = (id) => {
     })
     .then(r => r.json())
     .then(cartItem => dispatch({type: "DELETE_CART_ITEM", payload: cartItem}))
-    .then(cartItem => console.log(cartItem))
   }
 }

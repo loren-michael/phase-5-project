@@ -4,8 +4,6 @@ import { useDispatch } from 'react-redux';
 import NavBar from './NavBar';
 import { useNavigate } from 'react-router-dom';
 
-
-
 const ItemForm = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -36,13 +34,6 @@ const ItemForm = () => {
     })
   }
 
-  // function handleSubmit(e) {
-    // e.preventDefault();
-    // dispatch(addItem(item))
-    // resetForm()
-    // navigate("/")
-  // }
-
   function handleSubmit(e) {
     e.preventDefault();
     fetch("/items", {
@@ -55,27 +46,18 @@ const ItemForm = () => {
     })
     .then(r => {
       if (r.ok)  {
-        r.json().then(item => dispatch(addItem(item))
-        .then(resetForm())
-        .then(navigate(`/items/${item.id}`))
+        r.json()
+        .then(item => {
+          dispatch(addItem(item))
+          resetForm()
+          navigate(`/items/${item.id}`)
+        }
         )
       } else {
         r.json().then(data => setErrors(data.errors))
       }
     })
   }
-
-  // return (dispatch)  => {
-  //   console.log("dispatch action")
-  //   fetch("/items", {
-  //     method: "POST",
-  //     headers: headers,
-  //     body: JSON.stringify(item)
-  //   })
-  //   .then(r => r.json())
-  //   .then(item => dispatch({ type: "CREATE_ITEM", payload: item }))
-  //   .then(item => dispatch({ type: "ADD_ITEM_TO_USER", payload: item }))
-  // }
 
   return (
     <div>

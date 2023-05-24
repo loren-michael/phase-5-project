@@ -38,7 +38,7 @@ const ItemEdit = () => {
 
   function handleSubmit(e) {
     e.preventDefault();
-    fetch("/items", {
+    fetch("/items/" + displayItem.id, {
       method: "PATCH",
       headers: {
         "content-type": "application/json",

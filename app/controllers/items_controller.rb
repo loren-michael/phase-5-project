@@ -4,7 +4,6 @@ class ItemsController < ApplicationController
 
   # GET /items
   def index
-    # byebug
     render json: Item.all
   end
 
@@ -32,11 +31,8 @@ class ItemsController < ApplicationController
 
   # PATCH/PUT /items/1
   def update
-    if @item.update(item_params)
-      render json: @item
-    else
-      render json: @item.errors, status: :unprocessable_entity
-    end
+    @item.update!(item_params)
+    render json: @item
   end
 
   # DELETE /items/1

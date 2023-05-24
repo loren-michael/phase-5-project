@@ -5,15 +5,8 @@ const headers = {
 
 export const addItem = item => {
   return (dispatch)  => {
-    console.log("dispatch action")
-    fetch("/items", {
-      method: "POST",
-      headers: headers,
-      body: JSON.stringify(item)
-    })
-    .then(r => r.json())
-    .then(item => dispatch({ type: "CREATE_ITEM", payload: item }))
-    .then(item => dispatch({ type: "ADD_ITEM_TO_USER", payload: item }))
+    dispatch({ type: "CREATE_ITEM", payload: item })
+    dispatch({ type: "ADD_ITEM_TO_USER", payload: item })
   }
 }
 

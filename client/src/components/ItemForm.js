@@ -36,13 +36,46 @@ const ItemForm = () => {
     })
   }
 
+  // function handleSubmit(e) {
+    // e.preventDefault();
+    // dispatch(addItem(item))
+    // resetForm()
+    // navigate("/")
+  // }
+
   function handleSubmit(e) {
     e.preventDefault();
-    dispatch(addItem(item))
-    resetForm()
-    navigate("/")
+    fetch("/items", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+        "accept": "application/json"
+      },
+      body: JSON.stringify(item)
+    })
+    .then(r => {
+      if (r.ok)  {
+        r.json().then(item => dispatch(addItem(item))
+        .then(resetForm())
+        .then(navigate(`/items/${item.id}`))
+        )
+      } else {
+        r.json().then(data => setErrors(data.errors))
+      }
+    })
   }
 
+  // return (dispatch)  => {
+  //   console.log("dispatch action")
+  //   fetch("/items", {
+  //     method: "POST",
+  //     headers: headers,
+  //     body: JSON.stringify(item)
+  //   })
+  //   .then(r => r.json())
+  //   .then(item => dispatch({ type: "CREATE_ITEM", payload: item }))
+  //   .then(item => dispatch({ type: "ADD_ITEM_TO_USER", payload: item }))
+  // }
 
   return (
     <div>

@@ -49,6 +49,7 @@ Here is a list of the future plans I have in mind for this project:
 
 - Adding functionality to items to allow for more than 1 item to be sold at once and be taken from an item's available qty upon purchase.
 - I want a user to be able to edit their listing.
+- Update the menu to be a hover dropdown rather than a line of links/logos.
 - I plan to change some of the navigation and clean up my Redux store significantly in the coming days. 
 - I plan to go over the entire project to make sure it is as accessible as possible, similar to the functionality of the Sign Up and Login pages.
 - Significant styling cleanup, especially for carts and item cards.

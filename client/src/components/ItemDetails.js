@@ -33,6 +33,10 @@ const ItemDetails = () => {
     navigate("/profile")
   }
 
+  function handleEditListing() {
+    navigate("/edit")
+  }
+
 
   return (
     <div>
@@ -66,7 +70,10 @@ const ItemDetails = () => {
                 <div>
                   {
                     displayItem.user_id === currentUser.id ?
-                    <button id={displayItem.id} onClick={(e) => handleDeleteListing(e)} class="bg-transparent hover:bg-black text-black font-semibold hover:text-white py-2 px-4 border border-black hover:border-transparent rounded">Delete Listing</button>
+                    <div>
+                      <button id={displayItem.id} onClick={() => handleEditListing()} class="bg-transparent hover:bg-black text-black font-semibold hover:text-white py-2 px-4 border border-black hover:border-transparent rounded">Edit Listing</button>
+                      <button id={displayItem.id} onClick={(e) => handleDeleteListing(e)} class="bg-transparent hover:bg-black text-black font-semibold hover:text-white py-2 px-4 border border-black hover:border-transparent rounded">Delete Listing</button>
+                    </div>
                     :
                     <button onClick={() => handleAddCart()} class="bg-transparent hover:bg-black text-black font-semibold hover:text-white py-2 px-4 border border-black hover:border-transparent rounded">Add To Cart</button>
                   }

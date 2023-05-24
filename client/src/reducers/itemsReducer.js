@@ -14,11 +14,22 @@ const itemsReducer = (state=initialState, action) => {
       return {
         ...state,
         displayItem: action.payload
-      }
+      };
     case "CREATE_ITEM":
       return {
         ...state,
         items: [...state.items, action.payload]
+      };
+    case "UPDATE_ITEM":
+      return {
+        ...state,
+        items: state.items.map(item => {
+          if (item.id === action.payload.id) {
+            return action.payload
+          } else {
+            return item
+          }
+        })
       };
     case "DELETE_ITEM":
       return {

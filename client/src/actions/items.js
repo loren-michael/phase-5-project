@@ -37,3 +37,9 @@ export const loadItems = () => {
     .then(data => dispatch({type: "LOAD_ITEMS", payload: data}))
   }
 }
+
+export const updateItem = (item) => {
+  return (dispatch) => {
+    dispatch({type: "UPDATE_ITEM", payload: item})
+  }
+}

@@ -6,7 +6,6 @@ import { useNavigate } from 'react-router-dom';
 
 const ItemEdit = () => {
   const displayItem = useSelector(store => store.items.displayItem)
-  console.log(displayItem)
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [errors, setErrors] = useState([]);
